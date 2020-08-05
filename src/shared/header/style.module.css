@@ -1,0 +1,12 @@
+.header{
+    background-color: var(--background-secondary);
+}
+.logo{
+    color: white !important;
+    font-size: 2rem !important;
+}
+.headerLink .headeritem{
+    color: white !important ;
+    font-size: 1.3rem;
+}
+

@@ -1,0 +1,10 @@
+.footer {
+    background-color: var(--background-secondary);
+    color: white;
+    padding: 1rem 0;
+    margin-top: 0;
+}
+.footerSocialLinks {
+  display: flex;
+  justify-content: center;
+}

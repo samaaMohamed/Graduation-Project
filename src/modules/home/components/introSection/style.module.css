@@ -1,0 +1,10 @@
+.intro_header_section{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+}
+.intro_header_section_photo img{
+    max-width: 100%;
+    height: 100vh;
+}

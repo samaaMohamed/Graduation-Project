@@ -1,0 +1,12 @@
+.books_section_img {
+  max-width: 100%;
+  height: auto;
+}
+.books_section_title {
+  color: var(--text-secondary);
+  font-size: var(--heading-2-font-size);
+  text-transform: capitalize;
+}
+.book_list {
+  display: flex;
+}

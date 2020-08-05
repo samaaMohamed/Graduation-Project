@@ -35,6 +35,12 @@ body {
   font-size: var(--main-font-size) !important;
   color: var(--text-primary) !important;
   background-color: var(--layout-primary) !important;
+  --layout-primary: #fff;
+  --layout-secondary: #0a111a;
+  --text-primary: #242627;
+  --text-secondary: #0a111a;
+  --background-secondary: #0a111a;
+  --btn-hover: #024b88;
 }
 
 body.freezed {

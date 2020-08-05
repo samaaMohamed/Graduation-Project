@@ -1,7 +1,16 @@
 import React, { Component } from "react";
+import Header from "shared/header";
+import Footer from "shared/footer";
 
 export default class Layout extends Component {
   render() {
-    return <div></div>;
+    let { children } = this.props;
+    return (
+      <div>
+        <Header />
+        {children}
+        <Footer />
+      </div>
+    );
   }
 }
