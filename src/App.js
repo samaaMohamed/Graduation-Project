@@ -1,9 +1,8 @@
-import React from 'react';
-import './styles.css';
+import React from "react";
 
 class App extends React.Component {
   render() {
-    return <h1>Book store app is running !</h1>
+    return <h1>Book store app is running !</h1>;
   }
 }
 
