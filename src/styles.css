@@ -64,11 +64,11 @@ h6 {
 }
 
 p {
-  line-height: 1.5;
+  line-height: 1;
   letter-spacing: 0.12rem;
   word-spacing: 0.16rem;
 }
 
 p + p {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }

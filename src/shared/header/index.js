@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import SocialLinks from "shared/socialLinks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { header, logo, headerLink, headeritem } from "./style.module.css";
+import { faUserCircle ,faBars} from "@fortawesome/free-solid-svg-icons";
+import { header, logo, headerLink, headeritem, nav_togger } from "./style.module.css";
+import {Link} from 'react-router-dom';
 
 export default class Header extends Component {
   render() {
@@ -15,7 +16,7 @@ export default class Header extends Component {
             E BOOK
           </a>
           <button
-            className="navbar-toggler"
+            className={`${"navbar-toggler"} ${nav_togger}`}
             type="button"
             data-toggle="collapse"
             data-target="#navbarNav"
@@ -23,7 +24,7 @@ export default class Header extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+          <FontAwesomeIcon className={nav_togger} icon={faBars} />
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
@@ -31,9 +32,9 @@ export default class Header extends Component {
                 <SocialLinks />
               </li>
               <li className={`${"nav-item active"} ${headerLink}`}>
-                <a className={`${"nav-link"} ${headeritem}`} href="#">
-                  Home <span className="sr-only">(current)</span>
-                </a>
+                <Link className={`${"nav-link"} ${headeritem}`} to="/">
+                  Home
+                </Link>
               </li>
               <li className={`${"nav-item"} ${headerLink}`}>
                 <a className={`${"nav-link"} ${headeritem}`} href="#">
@@ -44,6 +45,11 @@ export default class Header extends Component {
                 <a className={`${"nav-link"} ${headeritem}`} href="#">
                   Register
                 </a>
+              </li>
+              <li className={`${"nav-item"} ${headerLink}`}>
+                <Link className={`${"nav-link"} ${headeritem}`} to="/books">
+                  Browse
+                </Link>
               </li>
               <li className={`${"nav-item "} ${headerLink}`}>
                 <a

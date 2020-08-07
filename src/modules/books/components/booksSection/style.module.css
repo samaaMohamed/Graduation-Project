@@ -1,12 +1,22 @@
+.books_section{
+  margin: 4rem 0;
+}
 .books_section_img {
   max-width: 100%;
-  height: auto;
+  max-height: 100%;
+  padding-right: 0.2rem;
 }
 .books_section_title {
   color: var(--text-secondary);
   font-size: var(--heading-2-font-size);
   text-transform: capitalize;
+  margin-bottom: 2rem;
 }
-.book_list {
-  display: flex;
+.carousel_container {
+  width: 100%;
+}
+@media(max-width:600px){
+  .books_section_title{
+    font-size: 1.5rem;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import book1_photo from "assets/intro.jpg";
-import BooksSection from "./../booksSection/index";
+import book1_photo from "assets/book.jpeg";
+import BooksSection from "./../booksSection";
 
 export default class LatestAddedBooks extends Component {
   state = {
@@ -10,6 +10,7 @@ export default class LatestAddedBooks extends Component {
       { id: 3, cover: book1_photo },
       { id: 4, cover: book1_photo },
       { id: 5, cover: book1_photo },
+      { id: 6, cover: book1_photo },
     ],
   };
   render() {
