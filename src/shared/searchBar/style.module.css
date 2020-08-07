@@ -1,0 +1,18 @@
+.search_bar{
+    margin-top: 0.5rem;
+    border: 1px solid #fff;
+    width: 170px;
+    border-radius: 10px;
+    padding: 0.2rem 1rem;
+    margin-right: 1rem;
+    position: relative;
+    font-size: 1rem;
+    outline: none;
+}
+.search_icon{
+    margin: 0;
+    position: absolute;
+    right:586px;
+    top: 2rem;
+    font-size: 1rem;
+}

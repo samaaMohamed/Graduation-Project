@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import BookCard from "modules/books/bookCard";
 import book_photo from "assets/book.jpeg";
-import { book_list,book_list_category } from "./style.module.css";
+import {
+  book_list,
+  book_list_category,
+  add_btn,
+  cart_icon,
+} from "./style.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 export default class BookList extends Component {
   state = {
@@ -12,7 +19,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 2,
@@ -20,7 +27,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 3,
@@ -28,7 +35,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 4,
@@ -36,7 +43,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 5,
@@ -44,7 +51,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 6,
@@ -52,7 +59,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 7,
@@ -60,7 +67,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 8,
@@ -68,7 +75,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 9,
@@ -76,7 +83,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"66"
+        rate: "66",
       },
       {
         id: 10,
@@ -84,7 +91,7 @@ export default class BookList extends Component {
         title: "book1",
         auther: "Mohamed",
         price: "$200",
-        rate:"rate"
+        rate: "rate",
       },
     ],
     Categories: [
@@ -112,6 +119,13 @@ export default class BookList extends Component {
                 return (
                   <div className="col-lg-3 col-md-4 col-sm-6">
                     <BookCard book={book} />
+                    <button className={add_btn}>
+                      <FontAwesomeIcon
+                        className={cart_icon}
+                        icon={faShoppingCart}
+                      ></FontAwesomeIcon>
+                      add to cart
+                    </button>
                   </div>
                 );
               })}

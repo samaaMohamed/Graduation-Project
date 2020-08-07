@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import SocialLinks from "shared/socialLinks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle ,faBars} from "@fortawesome/free-solid-svg-icons";
-import { header, logo, headerLink, headeritem, nav_togger } from "./style.module.css";
-import {Link} from 'react-router-dom';
+import { faUserCircle, faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  header,
+  logo,
+  headerLink,
+  headeritem,
+  nav_togger,
+} from "./style.module.css";
+import { Link } from "react-router-dom";
+import SearchBar from "shared/searchBar";
 
 export default class Header extends Component {
   render() {
@@ -24,10 +31,13 @@ export default class Header extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-          <FontAwesomeIcon className={nav_togger} icon={faBars} />
+            <FontAwesomeIcon className={nav_togger} icon={faBars} />
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
+              <li>
+                <SearchBar />
+              </li>
               <li>
                 <SocialLinks />
               </li>

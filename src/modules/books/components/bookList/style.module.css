@@ -17,6 +17,20 @@
     border: 1px solid var(--layout-secondary);
     color: var(--layout-secondary) ;
 }
+.add_btn{
+    padding: 0.5rem;
+    margin: 2rem  0;
+    text-transform: capitalize;
+    width: 200px;
+    background-color: var(--layout-secondary);
+    color: white;
+    border: 1px solid var(--layout-secondary);
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+}
+.cart_icon{
+    margin-right: 1rem;
+}
 @media(max-width: 600px){
     .book_list_category button{
       

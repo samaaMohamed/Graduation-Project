@@ -7,7 +7,7 @@ import {
   books_section_img,
   books_section_title,
   book_list,
-  carousel_container
+  carousel_container,
 } from "./style.module.css";
 
 export default class BooksSection extends Component {
@@ -32,31 +32,32 @@ export default class BooksSection extends Component {
         <h2 className={books_section_title}>{title}</h2>
         <section className={book_list}>
           <Carousel
-          swipeable={true}
+            swipeable={true}
             showDots={false}
             responsive={responsive}
             infinite={true}
             autoPlay={this.props.deviceType !== "mobile" ? true : false}
             autoPlaySpeed={1000}
-            removeArrowOnDeviceType={["desktop","tablet", "mobile"]}
+            removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
             keyBoardControl={true}
             customTransition="all .5"
             containerClass={carousel_container}
             transitionDuration={500}
           >
-            {books && books.map((book) => {
-              return (
-                <figure key={book.id}>
-                  <Link to={`/books/${book.id}`}>
-                    <img
-                      className={books_section_img}
-                      src={book.cover}
-                      alt=""
-                    />
-                  </Link>
-                </figure>
-              );
-            })}
+            {books &&
+              books.map((book) => {
+                return (
+                  <figure key={book.id}>
+                    <Link to={`/books/${book.id}`}>
+                      <img
+                        className={books_section_img}
+                        src={book.cover}
+                        alt=""
+                      />
+                    </Link>
+                  </figure>
+                );
+              })}
           </Carousel>
         </section>
       </div>
