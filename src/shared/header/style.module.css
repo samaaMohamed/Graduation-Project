@@ -1,16 +1,22 @@
-.header{
-    background-color: var(--background-secondary);
+.header {
+  background-color: var(--background-secondary);
 }
-.logo{
-    color: white !important;
-    font-size: 2rem !important;
+.logo {
+  color: white !important;
+  font-size: 2rem !important;
 }
-.headerLink .headeritem{
-    color: white !important ;
-    font-size: 1.3rem;
+.headerLink .headeritem {
+  color: white !important ;
+  font-size: 1.3rem;
 }
 
-.nav_togger{
-    color: #fff;
-    border-color: white;
+.nav_togger {
+  color: #fff;
+  border-color: white;
+}
+.header_bar {
+  margin-top: 0.5rem;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  font-size: 1rem;
 }

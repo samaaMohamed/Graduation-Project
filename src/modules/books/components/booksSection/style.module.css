@@ -1,7 +1,9 @@
-.books_section{
+.books_section {
   margin: 4rem 0;
 }
 .books_section_img {
+  position: relative;
+  z-index: -2;
   max-width: 100%;
   max-height: 100%;
   padding-right: 0.2rem;
@@ -15,8 +17,34 @@
 .carousel_container {
   width: 100%;
 }
-@media(max-width:600px){
-  .books_section_title{
+.book_section_overLay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(253, 251, 251, 0.5);
+  /* display: none; */
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  padding: 0.5rem;
+}
+.book_section_overLay:hover {
+  /* display: block; */
+}
+.book_section_overLay_price{
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+.rate{
+  /* margin-left: 7rem; */
+}
+.book_section_overLay_icon{
+  display: inline-block;
+}
+@media (max-width: 600px) {
+  .books_section_title {
     font-size: 1.5rem;
   }
 }

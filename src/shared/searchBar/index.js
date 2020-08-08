@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { search_bar, search_icon } from "./style.module.css";
+import {
+  search_bar,
+  search_icon,
+  search_bar_container,
+  intro_bar,
+  header_bar,
+} from "./style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,23 +18,36 @@ export default class SearchBar extends Component {
       [e.target.name]: e.target.value,
     });
   };
+
+  returnBarTypeClass = () => {
+    let { type } = this.props;
+    if (type === "header") {
+      return header_bar;
+    } else if (type === "booklist") {
+      // return booklist_bar;
+    } else if (type === "intro") {
+      return intro_bar;
+    }
+  };
   render() {
     let { name } = this.state;
 
     return (
       <>
         <form>
-          <input
-            className={search_bar}
-            name="search"
-            type="text"
-            placeholder="search"
-            onChange={this.handleChange}
-            value={name}
-          />
-          <span>
-            <FontAwesomeIcon className={search_icon} icon={faSearch} />
-          </span>
+          <section className={search_bar_container}>
+            <input
+              className={`${search_bar} ${this.returnBarTypeClass()} `}
+              name="search"
+              type="text"
+              placeholder="search"
+              onChange={this.handleChange}
+              value={name}
+            />
+            <span className={search_icon}>
+              <FontAwesomeIcon icon={faSearch} />
+            </span>
+          </section>
         </form>
       </>
     );

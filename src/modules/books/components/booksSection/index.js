@@ -8,7 +8,13 @@ import {
   books_section_title,
   book_list,
   carousel_container,
+  book_section_overLay,
+  book_section_overLay_price,
+  rate,
+  book_section_overLay_icon,
 } from "./style.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default class BooksSection extends Component {
   render() {
@@ -47,15 +53,30 @@ export default class BooksSection extends Component {
             {books &&
               books.map((book) => {
                 return (
-                  <figure key={book.id}>
-                    <Link to={`/books/${book.id}`}>
-                      <img
-                        className={books_section_img}
-                        src={book.cover}
-                        alt=""
-                      />
-                    </Link>
-                  </figure>
+                  <section>
+                    <div className={book_section_overLay}>
+                      <p className={book_section_overLay_price}>{book.price}</p>
+                      <p>{book.currency}</p>
+                      <figcaption className={rate}>
+                        <span>
+                          <FontAwesomeIcon
+                            className={book_section_overLay_icon}
+                            icon={faStar}
+                          ></FontAwesomeIcon>
+                        </span>
+                        <p>{book.rate}</p>
+                      </figcaption>
+                    </div>
+                    <figure key={book.id}>
+                      <Link to={`/books/${book.id}`}>
+                        <img
+                          className={books_section_img}
+                          src={book.cover}
+                          alt=""
+                        />
+                      </Link>
+                    </figure>
+                  </section>
                 );
               })}
           </Carousel>

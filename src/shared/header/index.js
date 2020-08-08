@@ -8,6 +8,7 @@ import {
   headerLink,
   headeritem,
   nav_togger,
+  header_bar,
 } from "./style.module.css";
 import { Link } from "react-router-dom";
 import SearchBar from "shared/searchBar";
@@ -36,7 +37,7 @@ export default class Header extends Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
               <li>
-                <SearchBar />
+                <SearchBar className={header_bar} type="header" />
               </li>
               <li>
                 <SocialLinks />

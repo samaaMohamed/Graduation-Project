@@ -3,6 +3,7 @@ import {
   book_card,
   book_card_heading,
   book_card_rate_icon,
+  book_old_price,
 } from "./style.module.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,9 +16,12 @@ export default class BookCard extends Component {
         <Link to={`/books/${book.id}`}>
           <img src={book.cover} />
         </Link>
-        <h3 className={book_card_heading}>{book.title}</h3>
+        <Link to={`/books/${book.id}`}>
+          <h3 className={book_card_heading}>{book.title}</h3>
+        </Link>
         <p>{book.auther}</p>
-        <p>{book.price}</p>
+        <p className={book_old_price}>{book.old_price}</p>
+        <span>{book.price}</span>
         <FontAwesomeIcon
           className={book_card_rate_icon}
           icon={faStar}

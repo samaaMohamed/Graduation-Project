@@ -1,6 +1,9 @@
 .book_list{
     margin: 10rem 0 7rem;
 }
+.book_list_category{
+    text-align: center;
+}
 .book_list_category button{
     margin: 0 2rem 1rem 0;
     padding: 0.5rem;
@@ -26,7 +29,7 @@
     color: white;
     border: 1px solid var(--layout-secondary);
     border-radius: 15px;
-    transition: all 0.3s ease-in-out;
+    font-size: 1rem;
 }
 .cart_icon{
     margin-right: 1rem;

@@ -1,0 +1,30 @@
+.book_card {
+  margin-top: 2rem;
+  padding: 1rem;
+  transition: all 0.3s;
+  border-radius: 3px;
+  background-color: rgb(245, 241, 241);
+  font-size: 1rem;
+}
+.book_card:hover {
+  border: 0.5px solid rgb(182, 179, 179);
+  box-shadow: 10px 10px 6px #000;
+}
+.book_card img {
+  margin-bottom: 1rem;
+  max-width: 100%;
+  border-radius: 3px;
+}
+.book_card_heading {
+  color: var(--text-secondary);
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+.book_old_price {
+  text-decoration: line-through;
+}
+.book_card_rate_icon {
+  margin: 0 0.2rem 0 1rem;
+  color: #ff9529;
+}
