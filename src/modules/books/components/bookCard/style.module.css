@@ -8,7 +8,7 @@
 }
 .book_card:hover {
   border: 0.5px solid rgb(182, 179, 179);
-  box-shadow: 10px 10px 6px #000;
+  box-shadow: 5px 5px 6px #000;
 }
 .book_card img {
   margin-bottom: 1rem;
@@ -27,4 +27,18 @@
 .book_card_rate_icon {
   margin: 0 0.2rem 0 1rem;
   color: #ff9529;
+}
+.add_btn{
+  padding: 0.5rem;
+  margin: 1rem 0 0.5rem;
+  text-transform: capitalize;
+  width: 200px;
+  background-color: var(--layout-secondary);
+  color: white;
+  border: 1px solid var(--layout-secondary);
+  border-radius: 15px;
+  font-size: 1rem;
+}
+.cart_icon{
+  margin-right: 1rem;
 }

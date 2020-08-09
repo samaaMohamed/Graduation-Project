@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import BookCard from "modules/books/components/bookCard";
-import book_photo from "assets/book.jpeg";
-import { book_list, book_list_category } from "./style.module.css";
+import { book_photo } from "assets/book.jpeg";
+import BookCard from "../bookCard";
+import { book_list } from "./style.module.css";
 import Pagination from "shared/pagination";
 
-export default class BookList extends Component {
+export default class Auther extends Component {
   state = {
     books: [
       {
@@ -98,26 +98,13 @@ export default class BookList extends Component {
         rate: "5",
       },
     ],
-    Categories: [
-      { id: 1, name: "islamic" },
-      { id: 2, name: "islamic" },
-      { id: 3, name: "islamic" },
-      { id: 4, name: "islamic" },
-      { id: 4, name: "islamic" },
-      { id: 5, name: "islamic" },
-    ],
   };
   render() {
     return (
       <div className={book_list}>
         <div className="container">
-          <section className={book_list_category}>
-            {this.state.Categories &&
-              this.state.Categories.map((Category) => {
-                return <button>{Category.name}</button>;
-              })}
-          </section>
           <div className="row">
+            <h2>{this.state.books.auther}</h2>
             {this.state.books &&
               this.state.books.map((book) => {
                 return (

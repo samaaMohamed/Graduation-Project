@@ -12,6 +12,8 @@ import {
   book_section_overLay_price,
   rate,
   book_section_overLay_icon,
+  content,
+  book_section_overLay_container,
 } from "./style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -53,21 +55,21 @@ export default class BooksSection extends Component {
             {books &&
               books.map((book) => {
                 return (
-                  <section>
+                  <section className={book_section_overLay_container}>
                     <div className={book_section_overLay}>
                       <p className={book_section_overLay_price}>{book.price}</p>
                       <p>{book.currency}</p>
                       <figcaption className={rate}>
-                        <span>
+                        <p>
                           <FontAwesomeIcon
                             className={book_section_overLay_icon}
                             icon={faStar}
                           ></FontAwesomeIcon>
-                        </span>
-                        <p>{book.rate}</p>
+                          {book.rate}
+                        </p>
                       </figcaption>
                     </div>
-                    <figure key={book.id}>
+                    <figure key={book.id} className={content}>
                       <Link to={`/books/${book.id}`}>
                         <img
                           className={books_section_img}

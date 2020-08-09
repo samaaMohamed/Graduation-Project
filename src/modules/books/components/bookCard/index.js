@@ -4,10 +4,12 @@ import {
   book_card_heading,
   book_card_rate_icon,
   book_old_price,
+  add_btn,
+  cart_icon,
 } from "./style.module.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 export default class BookCard extends Component {
   render() {
     let { book } = this.props;
@@ -27,6 +29,13 @@ export default class BookCard extends Component {
           icon={faStar}
         ></FontAwesomeIcon>
         <span>{book.rate}</span>
+        <button className={add_btn}>
+          <FontAwesomeIcon
+            className={cart_icon}
+            icon={faShoppingCart}
+          ></FontAwesomeIcon>
+          add to cart
+        </button>
       </div>
     );
   }
