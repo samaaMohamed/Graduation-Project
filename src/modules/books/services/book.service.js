@@ -10,19 +10,19 @@ export default class BookService extends CoreService {
   async list(page = 1, limit = 10) {
     let reqUrl = `${this.url}/list?page=${page}&limit=${limit}`;
 
-    let { data: records } = await this._http.get(reqUrl);
-    return records;
+    let { data } = await this._http.get(reqUrl);
+    return data;
   }
 
   async listLatestAdded() {
-    let reqUrl = `${this.url}/latest`;
+    let reqUrl = `${this.url}/newest/list`;
 
     let { data: records } = await this._http.get(reqUrl);
     return records;
   }
 
   async listBestReviewed() {
-    let reqUrl = `${this.url}/best`;
+    let reqUrl = `${this.url}/best/list`;
 
     let { data: records } = await this._http.get(reqUrl);
     return records;

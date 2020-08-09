@@ -36,20 +36,20 @@ export default class BookList extends Component {
     this.searchQuery = this.queryString.q;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setQueryUrlParams();
     if (this.filterQuery) {
       return this.filterBooks(this.filterQuery);
     } else if (this.searchQuery) {
       return this.searchOnLoad();
+    } else {
+      this.setState({ isLoading: true });
+      let { books } = await this._bookService.list();
+      this.setState({ books, isLoading: false });
     }
 
-    this.setState({ isLoading: true });
-    Promise.all([this._bookService.list(), this._categoryService.list()]).then(
-      ([books, categories]) => {
-        this.setState({ books, categories, isLoading: false });
-      }
-    );
+    let categories = await this._categoryService.list();
+    this.setState({ categories });
   }
 
   async searchOnLoad() {
