@@ -1,23 +1,34 @@
 import React, { Component } from "react";
-import book1_photo from "assets/book.jpeg";
 import BooksSection from "./../booksSection";
+import BookService from "modules/books/services/book.service";
 
 export default class LatestAddedBooks extends Component {
   state = {
-    books: [
-      { id: 1, cover: book1_photo, price: 200, currency: "L.E", rate: 5 },
-      { id: 2, cover: book1_photo, price: 200, currency: "L.E", rate: 5 },
-      { id: 3, cover: book1_photo, price: 200, currency: "L.E", rate: 5 },
-      { id: 4, cover: book1_photo, price: 200, currency: "L.E", rate: 5 },
-      { id: 5, cover: book1_photo, price: 200, currency: "L.E", rate: 5 },
-      { id: 6, cover: book1_photo, price: 200, currency: "L.E", rate: 5 },
-    ],
+    books: [],
+    isLoading: false,
   };
+
+  constructor(props) {
+    super(props);
+    this._bookService = new BookService();
+  }
+
+  async componentDidMount() {
+    this.setState({ isLoading: true });
+    let books = await this._bookService.listLatestAdded();
+    this.setState({ books, isLoading: false });
+  }
+
   render() {
+    let { books, isLoading } = this.state;
     return (
-      <div>
-        <BooksSection title="Latest Added Books" books={this.state.books} />
-      </div>
+      <>
+        {isLoading ? (
+          <p>Loading ...</p>
+        ) : (
+          <BooksSection title="Latest Added Books" books={books} />
+        )}
+      </>
     );
   }
 }

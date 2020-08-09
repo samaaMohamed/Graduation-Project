@@ -50,7 +50,7 @@ export default class BooksSection extends Component {
             containerClass={carousel_container}
             transitionDuration={500}
           >
-            {books &&
+            {books && books.length > 0 ? (
               books.map((book) => {
                 return (
                   <section>
@@ -78,7 +78,10 @@ export default class BooksSection extends Component {
                     </figure>
                   </section>
                 );
-              })}
+              })
+            ) : (
+              <p> No Items !</p>
+            )}
           </Carousel>
         </section>
       </div>

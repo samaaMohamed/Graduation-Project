@@ -8,15 +8,16 @@ import {
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 export default class BookCard extends Component {
   render() {
     let { book } = this.props;
     return (
       <div className={book_card}>
-        <Link to={`/books/${book.id}`}>
-          <img src={book.cover} />
+        <Link to={`/books/${book._id}`}>
+          <img src={book.cover} alt={`${book.name} cover`} />
         </Link>
-        <Link to={`/books/${book.id}`}>
+        <Link to={`/books/${book._id}`}>
           <h3 className={book_card_heading}>{book.title}</h3>
         </Link>
         <p>{book.auther}</p>

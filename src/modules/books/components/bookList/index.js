@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import BookCard from "modules/books/components/bookCard";
-import book_photo from "assets/book.jpeg";
 import {
   book_list,
   book_list_category,
@@ -9,123 +8,96 @@ import {
 } from "./style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import BookService from "modules/books/services/book.service";
+import CategoryService from "modules/books/services/category.service";
+import queryStr from "query-string";
 
 export default class BookList extends Component {
+  _bookService;
+  _categoryService;
+  filterQuery;
+  searchQuery;
+
   state = {
-    books: [
-      {
-        id: 1,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "5",
-      },
-      {
-        id: 2,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "5",
-      },
-      {
-        id: 3,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "4",
-      },
-      {
-        id: 4,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "2",
-      },
-      {
-        id: 5,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "3",
-      },
-      {
-        id: 6,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "4",
-      },
-      {
-        id: 7,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "5",
-      },
-      {
-        id: 8,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "3",
-      },
-      {
-        id: 9,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "4",
-      },
-      {
-        id: 10,
-        cover: book_photo,
-        title: "book1",
-        auther: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "5",
-      },
-    ],
-    Categories: [
-      { id: 1, name: "islamic" },
-      { id: 2, name: "islamic" },
-      { id: 3, name: "islamic" },
-      { id: 4, name: "islamic" },
-      { id: 4, name: "islamic" },
-      { id: 5, name: "islamic" },
-    ],
+    books: [],
+    categories: [],
+    isLoading: false,
   };
+
+  constructor(props) {
+    super(props);
+    this._bookService = new BookService();
+    this._categoryService = new CategoryService();
+  }
+
+  setQueryUrlParams() {
+    this.queryString = queryStr.parse(this.props.location.search);
+    this.filterQuery = this.queryString.category;
+    this.searchQuery = this.queryString.q;
+  }
+
+  componentDidMount() {
+    this.setQueryUrlParams();
+    if (this.filterQuery) {
+      return this.filterBooks(this.filterQuery);
+    } else if (this.searchQuery) {
+      return this.searchOnLoad();
+    }
+
+    this.setState({ isLoading: true });
+    Promise.all([this._bookService.list(), this._categoryService.list()]).then(
+      ([books, categories]) => {
+        this.setState({ books, categories, isLoading: false });
+      }
+    );
+  }
+
+  async searchOnLoad() {
+    this.setState({ isLoading: true });
+    let books = await this._bookService.search(this.searchQuery);
+    this.setState({ books, isLoading: false });
+  }
+
+  async filterBooks(categoryId) {
+    this.setState({ isLoading: true });
+    let books = await this._bookService.filterByCategory(categoryId);
+    this.setState({ books, isLoading: false });
+
+    if (!this.filterQuery) {
+      this.updateUrlWithCategoryId(categoryId);
+    }
+  }
+
+  updateUrlWithCategoryId(categoryId) {
+    this.queryString.category = categoryId;
+    let filterStringified = this.queryString.stringify(
+      this.queryString.category
+    );
+    this.props.location.search = filterStringified;
+  }
+
   render() {
+    let { isLoading, categories, books } = this.state;
     return (
       <div className={book_list}>
         <div className="container">
+          {isLoading && <p className="text-center">Loading ...</p>}
           <section className={book_list_category}>
-            {this.state.Categories &&
-              this.state.Categories.map((Category) => {
-                return <button>{Category.name}</button>;
+            {categories &&
+              categories.map((category) => {
+                return (
+                  <button
+                    key={category._id}
+                    onClick={() => this.filterBooks(category._id)}
+                  >
+                    {category.name}
+                  </button>
+                );
               })}
           </section>
           <div className="row">
-            {this.state.books &&
-              this.state.books.map((book) => {
+            {books &&
+              books.map((book) => {
                 return (
                   <div className="col-lg-3 col-md-4 col-sm-6">
                     <BookCard book={book} />
