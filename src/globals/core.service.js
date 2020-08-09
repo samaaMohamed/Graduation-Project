@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://ieee-website-dashboard.herokuapp.com/api",
+  baseURL: "https://bookstore-dashboard.herokuapp.com/api",
 });
 
 export default class CrudService {
