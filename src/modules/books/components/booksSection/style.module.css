@@ -1,18 +1,21 @@
 .books_section {
-  margin: 4rem 0;
+  margin: 4rem 0 7rem;
+}
+.book_cover {
+  height: 15rem;
 }
 .books_section_img {
   position: relative;
   z-index: -2;
   max-width: 100%;
-  max-height: 100%;
+  height: 100%;
   padding-right: 0.2rem;
 }
 .books_section_title {
   color: var(--text-secondary);
   font-size: var(--heading-2-font-size);
   text-transform: capitalize;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 .carousel_container {
   width: 100%;
@@ -22,26 +25,29 @@
   height: 100%;
   position: absolute;
   z-index: 3;
-  background-color: rgba(253, 251, 251, 0.5);
-  /* display: none; */
+  background-color: rgba(255, 255, 255, 0.6);
+  visibility: hidden;
   color: var(--text-secondary);
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: flex-end;
   padding: 0.5rem;
 }
-.book_section_overLay:hover {
-  /* display: block; */
+
+.book_section_item:hover .book_section_overLay {
+  visibility: visible;
 }
-.book_section_overLay_price{
+.book_section_overLay_price {
   display: inline-block;
   margin-right: 0.5rem;
 }
-.rate{
-  /* margin-left: 7rem; */
+.rate {
+  margin-right: 0.3rem;
 }
-.book_section_overLay_icon{
+.book_section_overLay_icon {
   display: inline-block;
+  margin-right: 0.2rem;
+  color: #ff9529;
 }
 @media (max-width: 600px) {
   .books_section_title {

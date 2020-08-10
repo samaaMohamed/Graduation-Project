@@ -12,6 +12,8 @@ import {
   book_section_overLay_price,
   rate,
   book_section_overLay_icon,
+  book_cover,
+  book_section_item,
 } from "./style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -42,8 +44,6 @@ export default class BooksSection extends Component {
             showDots={false}
             responsive={responsive}
             infinite={true}
-            autoPlay={this.props.deviceType !== "mobile" ? true : false}
-            autoPlaySpeed={1000}
             removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
             keyBoardControl={true}
             customTransition="all .5"
@@ -53,30 +53,33 @@ export default class BooksSection extends Component {
             {books && books.length > 0 ? (
               books.map((book) => {
                 return (
-                  <section>
-                    <div className={book_section_overLay}>
-                      <p className={book_section_overLay_price}>{book.price}</p>
-                      <p>{book.currency}</p>
-                      <figcaption className={rate}>
-                        <span>
-                          <FontAwesomeIcon
-                            className={book_section_overLay_icon}
-                            icon={faStar}
-                          ></FontAwesomeIcon>
-                        </span>
-                        <p>{book.rate}</p>
-                      </figcaption>
-                    </div>
-                    <figure key={book.id}>
-                      <Link to={`/books/${book.id}`}>
+                  <Link to={`/books/${book._id}`} key={book._id}>
+                    <section className={book_section_item}>
+                      <div className={book_section_overLay}>
+                        <p className={book_section_overLay_price}>
+                          {book.price} {book.currency}
+                        </p>
+                        <figcaption className={rate}>
+                          <p>
+                            <span>
+                              <FontAwesomeIcon
+                                className={book_section_overLay_icon}
+                                icon={faStar}
+                              ></FontAwesomeIcon>
+                            </span>
+                            <span>{book.rate}</span>
+                          </p>
+                        </figcaption>
+                      </div>
+                      <figure className={book_cover}>
                         <img
                           className={books_section_img}
                           src={book.cover}
                           alt=""
                         />
-                      </Link>
-                    </figure>
-                  </section>
+                      </figure>
+                    </section>
+                  </Link>
                 );
               })
             ) : (

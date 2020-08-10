@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import BookCard from "modules/books/components/bookCard";
-import {
-  book_list,
-  book_list_category,
-  add_btn,
-  cart_icon,
-} from "./style.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { book_list, book_list_category } from "./style.module.css";
 import BookService from "modules/books/services/book.service";
 import CategoryService from "modules/books/services/category.service";
 import queryStr from "query-string";
@@ -100,14 +93,7 @@ export default class BookList extends Component {
               books.map((book) => {
                 return (
                   <div className="col-lg-3 col-md-4 col-sm-6">
-                    <BookCard book={book} />
-                    <button className={add_btn}>
-                      <FontAwesomeIcon
-                        className={cart_icon}
-                        icon={faShoppingCart}
-                      ></FontAwesomeIcon>
-                      add to cart
-                    </button>
+                    <BookCard book={book} key={book._id} />
                   </div>
                 );
               })}
