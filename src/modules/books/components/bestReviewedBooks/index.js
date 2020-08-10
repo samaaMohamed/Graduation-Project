@@ -16,7 +16,7 @@ export default class BestReviewedBooks extends Component {
 
   async componentDidMount() {
     this.setState({ isLoading: true });
-    let books = await this._bookService.listBestReviewed();
+    let { books } = await this._bookService.listBestReviewed();
     this.setState({ books, isLoading: false });
   }
 

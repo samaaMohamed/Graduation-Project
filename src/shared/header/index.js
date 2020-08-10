@@ -34,11 +34,14 @@ export default class Header extends Component {
           >
             <FontAwesomeIcon className={nav_togger} icon={faBars} />
           </button>
+          <ul className="navbar-nav mr-auto">
+            <li>
+              <SearchBar className={header_bar} type="header" />
+            </li>
+          </ul>
+
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
-              <li>
-                <SearchBar className={header_bar} type="header" />
-              </li>
               <li>
                 <SocialLinks />
               </li>

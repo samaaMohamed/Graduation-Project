@@ -15,7 +15,7 @@ export default class LatestAddedBooks extends Component {
 
   async componentDidMount() {
     this.setState({ isLoading: true });
-    let books = await this._bookService.listLatestAdded();
+    let { books } = await this._bookService.listLatestAdded();
     this.setState({ books, isLoading: false });
   }
 

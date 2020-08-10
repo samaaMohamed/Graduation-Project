@@ -31,7 +31,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  font-size: 1rem;
+  visibility: hidden;
+}
+.book_section_overLay_container{
+  transition: all 0.3s ease-in-out;
 }
 
 .book_section_item:hover .book_section_overLay {
