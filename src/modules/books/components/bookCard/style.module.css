@@ -3,11 +3,11 @@
   padding: 1rem;
   transition: all 0.3s;
   border-radius: 3px;
-  background-color: rgb(245, 241, 241);
+  background-color: rgb(218, 214, 214);
   font-size: 1rem;
 }
 .book_card:hover {
-  border: 0.5px solid rgb(182, 179, 179);
+  border: 0.5px solid rgb(173, 169, 169);
   box-shadow: 5px 5px 6px #000;
 }
 .book_card img {
