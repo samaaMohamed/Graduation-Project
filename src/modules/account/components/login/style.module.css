@@ -1,15 +1,19 @@
 .login_form_container {
   margin-top: 10rem;
-  text-align: center;
   text-transform: capitalize;
+  vertical-align: middle;
 }
-.login_form {
-  margin: 2rem;
+.login_form {  
+  width: 50%;
+  margin: 2rem auto;
+  vertical-align: middle;
+  background-color: rgb(216, 210, 210);
+  padding: 2rem;
+}
+.login_form_heading {
+  text-align: center;
 }
 .login_form_input {
-  background-color: rgb(248, 246, 246);
-  width: 50%;
-  margin: auto;
   display: block;
 }
 .login_form_control {
@@ -17,7 +21,7 @@
   padding: 0.5rem;
   border-radius: 10px;
   width: 70%;
-  border: 1px solid rgb(221, 216, 216);
+  border: 1px solid rgb(180, 176, 176);
 }
 .label {
   display: block;
@@ -32,5 +36,3 @@
   border: none;
   border-radius: 0.5rem;
 }
-
-

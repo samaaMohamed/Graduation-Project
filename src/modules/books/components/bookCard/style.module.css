@@ -4,17 +4,20 @@
   text-transform: capitalize;
   transition: all 0.3s;
   border-radius: 3px;
-  background-color: rgb(248, 246, 246);
+  background-color: rgb(223, 219, 219);
   font-size: 1rem;
+  border: 1px solid rgb(182, 179, 179);
 }
 .book_card:hover {
   border: 0.5px solid rgb(173, 169, 169);
   box-shadow: 5px 5px 6px #000;
+  transform: scale(1.1);
 }
 .book_card img {
   margin-bottom: 1rem;
   max-width: 100%;
   border-radius: 3px;
+  height: 10rem;
 }
 .book_card_heading {
   color: var(--text-secondary);
@@ -29,12 +32,20 @@
   margin: 0 0.2rem 0 1rem;
   color: #ff9529;
 }
-.add_btn{
+
+.book_rate {
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+.add_btn {
   padding: 0.5rem;
   margin: 1rem 0 0.5rem;
   display: block;
   text-transform: capitalize;
   width: 150px;
+
+  width: 100%;
   background-color: var(--layout-secondary);
   color: white;
   border: 1px solid var(--layout-secondary);
@@ -42,6 +53,9 @@
   font-size: 1rem;
   box-sizing: border-box;
 }
-.cart_icon{
+.cart_icon {
   margin-right: 0.5rem;
+}
+.cart_icon {
+  margin-right: 1rem;
 }

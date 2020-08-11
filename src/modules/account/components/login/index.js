@@ -54,10 +54,10 @@ export default class Login extends Component {
               id="password"
             />
           </div>
+          <button className={login_btn} type="submit">
+            Login
+          </button>
         </form>
-        <button className={login_btn} type="submit">
-          Login
-        </button>
       </div>
     );
   }

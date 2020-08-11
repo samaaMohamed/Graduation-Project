@@ -1,0 +1,13 @@
+.pagination__container{
+    margin-top: 6rem;
+    display: flex;
+    justify-content: center;
+}
+
+.active-tab {
+    color: #333 !important;
+}
+
+.active-tab:disabled {
+    pointer-events: none;
+}
