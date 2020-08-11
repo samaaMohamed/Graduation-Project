@@ -1,0 +1,43 @@
+.contact {
+  margin-top: 10rem;
+}
+.contact_form_control {
+  display: block;
+  padding: 0.7rem 1.5rem;
+  margin-bottom: 2rem;
+  width: 90%;
+  border: 0.1rem solid;
+  border-radius: 1rem;
+  outline: none;
+}
+.contact_form_control_message {
+  height: 6rem;
+}
+.contact_form_submit {
+  background-color: var(--layout-secondary);
+  color: white;
+  display: inline-block;
+  width: 50%;
+  padding: 0.2rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  border: none;
+  margin-bottom: 2rem;
+}
+.contact_heading {
+  color: var(--layout-secondary);
+  text-align: center;
+  padding-bottom: 4rem;
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+@media (max-width: 600px) {
+  .contact_form_submit {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+    width: 75%;
+    margin: 1rem auto;
+    display: block;
+  }
+}

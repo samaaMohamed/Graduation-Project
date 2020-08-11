@@ -1,9 +1,10 @@
 .book_card {
   margin-top: 2rem;
   padding: 1rem;
+  text-transform: capitalize;
   transition: all 0.3s;
   border-radius: 3px;
-  background-color: rgb(218, 214, 214);
+  background-color: rgb(223, 219, 219);
   font-size: 1rem;
   border: 1px solid rgb(182, 179, 179);
 }
@@ -40,13 +41,20 @@
 .add_btn {
   padding: 0.5rem;
   margin: 1rem 0 0.5rem;
+  display: block;
   text-transform: capitalize;
+  width: 150px;
+
   width: 100%;
   background-color: var(--layout-secondary);
   color: white;
   border: 1px solid var(--layout-secondary);
   border-radius: 15px;
   font-size: 1rem;
+  box-sizing: border-box;
+}
+.cart_icon {
+  margin-right: 0.5rem;
 }
 .cart_icon {
   margin-right: 1rem;

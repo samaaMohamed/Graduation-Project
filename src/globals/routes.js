@@ -1,9 +1,13 @@
 import Home from "modules/home";
 import BookList from "modules/books/components/bookList";
 import Author from "modules/books/components/author";
+import Contacts from "modules/contact";
+import Login from "modules/account/components/login";
 
 export default [
   { path: "/", component: Home },
   { path: "/books", component: BookList },
   { path: "/author/:id", component: Author },
+  { path: "/contact", component: Contacts },
+  { path: "/login", component: Login },
 ];
