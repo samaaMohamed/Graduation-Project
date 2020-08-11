@@ -1,0 +1,9 @@
+.info_contact {
+  color: var(--layout-secondery);
+}
+.pesonal_contact {
+  padding: 0 0 2rem;
+}
+.pesonal_contact_icon {
+  margin-right: 1rem;
+}

@@ -21,8 +21,3 @@
     border: 1px solid var(--layout-secondary);
     color: var(--layout-secondary) ;
 }
-@media(max-width: 600px){
-    .book_list_category button{
-      
-    } 
-}

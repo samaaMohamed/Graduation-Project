@@ -51,19 +51,24 @@ export default class Header extends Component {
                 </Link>
               </li>
               <li className={`${"nav-item"} ${headerLink}`}>
-                <a className={`${"nav-link"} ${headeritem}`} href="#">
+                <Link className={`${"nav-link"} ${headeritem}`} to="/books">
+                  Browse
+                </Link>
+              </li>
+              <li className={`${"nav-item"} ${headerLink}`}>
+                <Link className={`${"nav-link"} ${headeritem}`} to="/contact">
+                  Contact
+                </Link>
+              </li>
+              <li className={`${"nav-item"} ${headerLink}`}>
+                <Link className={`${"nav-link"} ${headeritem}`} to="/login">
                   login
-                </a>
+                </Link>
               </li>
               <li className={`${"nav-item "} ${headerLink}`}>
                 <a className={`${"nav-link"} ${headeritem}`} href="#">
                   Register
                 </a>
-              </li>
-              <li className={`${"nav-item"} ${headerLink}`}>
-                <Link className={`${"nav-link"} ${headeritem}`} to="/books">
-                  Browse
-                </Link>
               </li>
               <li className={`${"nav-item "} ${headerLink}`}>
                 <a
