@@ -35,7 +35,7 @@ export default class BookService extends CoreService {
     return records;
   }
 
-  async searchByName(query) {
+  async search(query) {
     let reqUrl = `${this.url}/search?q=${query}`;
 
     let { data: records } = await this._http.get(reqUrl);
