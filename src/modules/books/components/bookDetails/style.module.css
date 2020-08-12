@@ -1,0 +1,38 @@
+.book_details {
+  margin-top: 10rem;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.book_image {
+  width: 100%;
+}
+.book_price{
+    margin: 2rem 0;
+}
+.new_price {
+  padding: 0 4rem 0 1rem;
+  font-weight: bold;
+}
+.old_price {
+  text-decoration: line-through;
+  font-weight: bold;
+}
+.icon {
+  margin-right: 0.5rem;
+  color: #ff9529;
+}
+.add_btn {
+  padding: 0.5rem;
+  margin: 0 0 1rem 0;
+  text-transform: capitalize;
+  width: 200px;
+  background-color: var(--layout-secondary);
+  color: white;
+  border: 1px solid var(--layout-secondary);
+  border-radius: 15px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+.cart_icon {
+  margin-right: 0.5rem;
+}

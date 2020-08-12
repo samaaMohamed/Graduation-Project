@@ -4,6 +4,8 @@ import BookList from "modules/books/components/bookList";
 import Author from "modules/books/components/author";
 import Contacts from "modules/contact";
 import Login from "modules/account/components/login";
+import Register from "modules/account/register";
+import BookDetails from "modules/books/components/bookDetails";
 
 export default [
   { path: "/", component: Home },
@@ -11,4 +13,6 @@ export default [
   { path: "/author", component: Author },
   { path: "/contact", component: Contacts },
   { path: "/login", component: Login },
+  { path: "/register", component: Register },
+  { path: "/book", component: BookDetails },
 ];

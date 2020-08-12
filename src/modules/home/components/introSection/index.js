@@ -12,13 +12,13 @@ export default class Intro extends Component {
   render() {
     return (
       <div className={intro_header_section}>
-        {/* <div className={intro_header_over_lay}>
+        <div className={intro_header_over_lay}>
           <div className="container">
             <div className={intro_bar}>
+              <SearchBar type="intro" />
             </div>
           </div>
-        </div> */}
-        <SearchBar type="intro" />
+        </div>
         <figure className={intro_header_section_photo}>
           <img src={intro_photo} alt="intro cover" />
         </figure>

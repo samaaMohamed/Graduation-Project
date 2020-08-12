@@ -66,9 +66,9 @@ export default class Header extends Component {
                 </Link>
               </li>
               <li className={`${"nav-item "} ${headerLink}`}>
-                <a className={`${"nav-link"} ${headeritem}`} href="#">
+                <Link className={`${"nav-link"} ${headeritem}`} to="/register">
                   Register
-                </a>
+                </Link>
               </li>
               <li className={`${"nav-item "} ${headerLink}`}>
                 <a

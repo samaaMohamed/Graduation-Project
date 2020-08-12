@@ -6,6 +6,7 @@ import {
   active,
   category_btn,
   back_btn,
+  booklist_bar,
 } from "./style.module.css";
 import BookService from "modules/books/services/book.service";
 import book_photo from "assets/book.jpeg";
@@ -14,6 +15,7 @@ import queryStr from "query-string";
 import Pagination from "shared/pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "shared/searchBar";
 
 export default class BookList extends Component {
   _bookService;
@@ -253,6 +255,9 @@ export default class BookList extends Component {
           {!isLoading && !isFailed && (
             <>
               <section className={book_list_category}>
+                {/* <div className={booklist_bar}>
+                  <SearchBar type="booklist"/>
+                </div> */}
                 <a
                   href="/books"
                   className={`${!this.filterQuery && active} ${category_btn}`}

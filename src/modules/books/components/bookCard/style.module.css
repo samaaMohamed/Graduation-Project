@@ -4,7 +4,7 @@
   text-transform: capitalize;
   transition: all 0.3s;
   border-radius: 3px;
-  background-color: rgb(223, 219, 219);
+  background-color: rgb(241, 236, 236);
   font-size: 1rem;
   border: 1px solid rgb(182, 179, 179);
 }
@@ -44,7 +44,6 @@
   display: block;
   text-transform: capitalize;
   width: 150px;
-
   width: 100%;
   background-color: var(--layout-secondary);
   color: white;
@@ -56,6 +55,4 @@
 .cart_icon {
   margin-right: 0.5rem;
 }
-.cart_icon {
-  margin-right: 1rem;
-}
+

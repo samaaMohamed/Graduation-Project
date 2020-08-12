@@ -15,10 +15,6 @@ export default class Login extends Component {
     password: "",
   };
 
-  componentDidMount() {
-    this.setState({ email: "", password: "" });
-  }
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,

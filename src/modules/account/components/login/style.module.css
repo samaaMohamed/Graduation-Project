@@ -3,24 +3,35 @@
   text-transform: capitalize;
   vertical-align: middle;
 }
-.login_form {  
+.login_form {
   width: 50%;
   margin: 2rem auto;
-  vertical-align: middle;
-  background-color: rgb(216, 210, 210);
   padding: 2rem;
+  border: 1px solid rgb(202, 199, 199);
 }
 .login_form_heading {
   text-align: center;
 }
+@media (max-width: 600px) and (max-width: 981px) {
+  .login_form {
+    width: 80%;
+  }
+  .login_form_control {
+    width: 100%;
+  }
+  .login_btn {
+    font-size: 1rem;
+  }
+}
 .login_form_input {
   display: block;
+  font-size: 1rem;
 }
 .login_form_control {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 10px;
-  width: 70%;
+  width: 100%;
   border: 1px solid rgb(180, 176, 176);
 }
 .label {
