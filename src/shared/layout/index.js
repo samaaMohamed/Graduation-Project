@@ -6,11 +6,11 @@ export default class Layout extends Component {
   render() {
     let { children } = this.props;
     return (
-      <div>
+      <>
         <Header />
         {children}
         <Footer />
-      </div>
+      </>
     );
   }
 }

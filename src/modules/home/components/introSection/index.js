@@ -5,7 +5,7 @@ import {
   intro_header_over_lay,
   intro_bar,
 } from "./style.module.css";
-import intro_photo from "../../../../assets/intro.jpg";
+import intro_photo from "assets/intro.jpg";
 import SearchBar from "shared/searchBar";
 
 export default class Intro extends Component {

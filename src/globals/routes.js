@@ -1,4 +1,3 @@
-import App from "App";
 import Home from "modules/home";
 import BookList from "modules/books/components/bookList";
 import Author from "modules/books/components/author";
@@ -10,7 +9,7 @@ import BookDetails from "modules/books/components/bookDetails";
 export default [
   { path: "/", component: Home },
   { path: "/books", component: BookList },
-  { path: "/author", component: Author },
+  { path: "/author/:id", component: Author },
   { path: "/contact", component: Contacts },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
