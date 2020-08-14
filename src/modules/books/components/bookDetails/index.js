@@ -148,8 +148,12 @@ export default class BookDetails extends Component {
                   </Link>
                   <span>(author)</span>
                   <p className={book_price}>
-                    <span className={old_price}>{book.old_price}</span>
-                    <span className={new_price}>{book.price}</span>
+                    <span className={old_price}>
+                      {book.currency} {book.old_price}
+                    </span>
+                    <span className={new_price}>
+                      {book.currency} {book.price}
+                    </span>
                     <FontAwesomeIcon
                       className={icon}
                       icon={faStar}
@@ -178,6 +182,9 @@ export default class BookDetails extends Component {
                 </section>
               </section>
               <section className={book__reviews__list}>
+                {book.reviews.length > 0 && (
+                  <h2>Reviews ({book.reviews.length})</h2>
+                )}
                 <ul className="list-unstyled">
                   {book.reviews.length > 0 &&
                     book.reviews.map((review) => (
