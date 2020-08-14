@@ -12,25 +12,120 @@ import {
   icon,
   add_btn,
   cart_icon,
+  book__reviews,
+  add_review_section,
+  review__btn,
+  book__reviews__list,
 } from "./style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import BookService from "modules/books/services/book.service";
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
 
 export default class BookDetails extends Component {
   state = {
-    book: {
-      cover: book_photo,
-      name: "prizza girl",
-      author: "mohamed",
-      old_price: "$500",
-      price: "$200",
-      rate: 5,
-      description:
-        "Fresh, funny, bittersweetThis book delivers humor, humanity and hubris.--New York Times Book ReviewNamed a most anticipated book of 2020 by Vogue, Harper's Bazaar, Elle, Marie Claire, Time, People, BuzzFeed, Bustle, and moreIn the tradition of audacious and wryly funny novels like The Idiot and Convenience Store Woman comes the wildly original coming-of-age story of a pregnant pizza delivery girl who becomes obsessed with one of her customers.Eighteen years old, pregnant, and working as a pizza delivery girl in suburban Los Angeles, our charmingly dysfunctional heroine is deeply lost and in complete denial about it all. She's grieving the death of her father (whom she has more in common with than she'd like to admit), avoiding her supportive mom and loving boyfriend, and flagrantly ignoring her future.Her world is further upended when she becomes obsessed with Jenny, a stay-at-home mother new to the neighborhood, who comes to depend on weekly deliveries of pickled-covered pizzas for her son's happiness. As one woman looks toward motherhood and the other toward middle age, the relationship between the two begins to blur in strange, complicated, and ultimately heartbreaking ways.Bold, tender, propulsive, and unexpected in countless ways, Jean Kyoung Frazier's Pizza Girl is a moving and funny portrait of a flawed, unforgettable young woman as she tries to find her place in the world.",
+    book: null,
+    isModalOpened: false,
+    isSubmitting: false,
+    reviewBody: "",
+    reviewRate: 1,
+    user: {
+      name: "Samaa",
+      id: "1",
     },
   };
+
+  constructor(props) {
+    super(props);
+    this._bookService = new BookService();
+  }
+
+  async componentDidMount() {
+    this.setState({ isLoading: true });
+    this.bookId = this.props.match.params.id;
+    try {
+      let book = await this._bookService.getBookDetails(this.bookId);
+      this.setState({ book, isLoading: false });
+    } catch (error) {
+      if (error.response) this.setState({ errMsg: error.response.data.msg });
+    }
+  }
+
+  toggleModalState = () => {
+    let { isModalOpened } = this.state;
+    this.setState({ isModalOpened: !isModalOpened });
+  };
+
+  handleReviewChange = (e) => {
+    let { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  addReviewToTheList = () => {
+    let {
+      book: { reviews },
+      reviewBody,
+      reviewRate,
+      user: { id, name },
+    } = this.state;
+    reviews.push({
+      body: reviewBody,
+      rate: reviewRate,
+      author: { id, name },
+    });
+  };
+
+  sendReview = async (e) => {
+    e.preventDefault();
+    let {
+        reviewBody,
+        reviewRate,
+        user: { id, name },
+      } = this.state,
+      reviewObj = {
+        rate: reviewRate,
+        body: reviewBody,
+        author: { id, name },
+      };
+
+    this.setState({ isSubmitting: true });
+    try {
+      let successMessage = await this._bookService.addReview(
+        this.bookId,
+        reviewObj
+      );
+      alert(successMessage);
+      this.setState({ isSubmitting: false });
+      this.addReviewToTheList();
+      this.toggleModalState();
+    } catch (error) {
+      if (error.response) {
+        this.setState({ isSubmitting: false });
+        alert(error.response.data.msg);
+      }
+    }
+  };
+
+  returnRateMessage = () => {
+    let { reviewRate } = this.state;
+    let rateMessages = ["", "Very Bad", "Bad", "Normal", "Good", "Attractive"];
+    return rateMessages[reviewRate];
+  };
+
   render() {
+    let {
+      book,
+      isLoading,
+      errMsg,
+      isModalOpened,
+      reviewBody,
+      reviewRate,
+      isSubmitting,
+    } = this.state;
     return (
       <div className={book_details}>
         <div className="container">

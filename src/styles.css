@@ -76,3 +76,7 @@ p + p {
 .react-multi-carousel-item {
   width: 222px !important;
 }
+
+.react-responsive-modal-modal {
+  width: 90%;
+}

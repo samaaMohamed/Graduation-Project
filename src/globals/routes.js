@@ -13,5 +13,5 @@ export default [
   { path: "/contact", component: Contacts },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
-  { path: "/book", component: BookDetails },
+  { path: "/books/:id", component: BookDetails },
 ];
