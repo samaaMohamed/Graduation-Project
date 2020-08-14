@@ -41,4 +41,20 @@ export default class BookService extends CoreService {
     let { data: records } = await this._http.get(reqUrl);
     return records;
   }
+
+  async getBookDetails(bookId) {
+    let reqUrl = `${this.url}/${bookId}`;
+
+    let { data: record } = await this._http.get(reqUrl);
+    return record;
+  }
+
+  async addReview(bookId, reviewObj) {
+    let reqUrl = `${this.url}/${bookId}/reviews/new`;
+
+    let {
+      data: { msg },
+    } = await this._http.post(reqUrl, reviewObj);
+    return msg;
+  }
 }
