@@ -44,7 +44,7 @@ export default class BookDetails extends Component {
             </div>
             <div className="col-lg-8 col-md-6 co-sm-12">
               <h2>{this.state.book.name}</h2>
-              <Link to="/author">
+              <Link to="/author/:id">
                 <span className={author}>{this.state.book.author}</span>
               </Link>
               <span>(author)</span>

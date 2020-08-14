@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   max-width: 100%;
-  z-index: 3;
+  /* z-index: 3; */
   position: relative;
 }
 .intro_header_section_photo img {
