@@ -9,7 +9,6 @@ import {
   booklist_bar,
 } from "./style.module.css";
 import BookService from "modules/books/services/book.service";
-import book_photo from "assets/book.jpeg";
 import CategoryService from "modules/books/services/category.service";
 import queryStr from "query-string";
 import Pagination from "shared/pagination";
@@ -23,108 +22,8 @@ export default class BookList extends Component {
   filterQuery;
   searchQuery;
   state = {
-    books: [
-      {
-        id: 1,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "5",
-      },
-      {
-        id: 2,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "5",
-      },
-      {
-        id: 3,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "4",
-      },
-      {
-        id: 4,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "2",
-      },
-      {
-        id: 5,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "3",
-      },
-      {
-        id: 6,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "4",
-      },
-      {
-        id: 7,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "5",
-      },
-      {
-        id: 8,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "3",
-      },
-      {
-        id: 9,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "4",
-      },
-      {
-        id: 10,
-        cover: book_photo,
-        title: "book1",
-        author: "Mohamed",
-        old_price: "$100",
-        price: "$200",
-        rate: "5",
-      },
-    ],
-    Categories: [
-      { id: 1, name: "islamic" },
-      { id: 2, name: "islamic" },
-      { id: 3, name: "islamic" },
-      { id: 4, name: "islamic" },
-      { id: 4, name: "islamic" },
-      { id: 5, name: "islamic" },
-    ],
     books: [],
-    categories: [],
+    Categories: [],
     isLoading: false,
     isFailed: false,
     totalPages: 0,

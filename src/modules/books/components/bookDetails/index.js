@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import book_photo from "assets/book.jpeg";
 import {
   book_details,
   book_image,
@@ -23,8 +22,10 @@ import { Link } from "react-router-dom";
 import BookService from "modules/books/services/book.service";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
+import { UserProvider } from "globals/contexts/auth.context";
 
 export default class BookDetails extends Component {
+  static contextType = UserProvider;
   state = {
     book: null,
     isModalOpened: false,
@@ -126,6 +127,7 @@ export default class BookDetails extends Component {
       reviewRate,
       isSubmitting,
     } = this.state;
+    let { isAuthenticated } = this.context;
     return (
       <div className={book_details}>
         <div className="container">
@@ -138,7 +140,7 @@ export default class BookDetails extends Component {
                   <img
                     className={book_image}
                     src={book.cover}
-                    alt="book photo"
+                    alt="the cover of the book"
                   />
                 </div>
                 <div className="col-lg-8 col-md-6 co-sm-12">
@@ -160,13 +162,15 @@ export default class BookDetails extends Component {
                     ></FontAwesomeIcon>
                     <span className={rate}>{book.rate}</span>
                   </p>
-                  <button className={add_btn}>
-                    <FontAwesomeIcon
-                      className={cart_icon}
-                      icon={faShoppingCart}
-                    ></FontAwesomeIcon>
-                    add to cart
-                  </button>
+                  {isAuthenticated && (
+                    <button className={add_btn}>
+                      <FontAwesomeIcon
+                        className={cart_icon}
+                        icon={faShoppingCart}
+                      ></FontAwesomeIcon>
+                      add to cart
+                    </button>
+                  )}
                   <h3>Description</h3>
                   <p className={description}>{book.description}</p>
                 </div>
@@ -218,47 +222,61 @@ export default class BookDetails extends Component {
                   },
                 }}
               >
-                <h2>Add a useful review</h2>
-                <form onSubmit={this.sendReview}>
-                  <section className="form-group">
-                    <label htmlFor="rate">Your rate from 1 to 5</label>
-                    <input
-                      className="form-control"
-                      type="range"
-                      name="reviewRate"
-                      id="rate"
-                      min="1"
-                      max="5"
-                      step="1"
-                      value={reviewRate}
-                      onChange={this.handleReviewChange}
-                    />
-                    <small>
-                      Rate: {reviewRate} - {this.returnRateMessage()}
-                    </small>
-                  </section>
-                  <section className="form-group">
-                    <label htmlFor="rateBody">Your Review</label>
-                    <textarea
-                      type="text"
-                      id="rateBody"
-                      className="form-control"
-                      name="reviewBody"
-                      value={reviewBody}
-                      onChange={this.handleReviewChange}
-                      rows="5"
-                    ></textarea>
-                  </section>
-                  <section className="form-group">
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Submitting your review ..." : "Submit"}
-                    </button>
-                  </section>
-                </form>
+                {isAuthenticated ? (
+                  <>
+                    <h2>Add a useful review</h2>
+                    <form onSubmit={this.sendReview}>
+                      <section className="form-group">
+                        <label htmlFor="rate">Your rate from 1 to 5</label>
+                        <input
+                          className="form-control"
+                          type="range"
+                          name="reviewRate"
+                          id="rate"
+                          min="1"
+                          max="5"
+                          step="1"
+                          value={reviewRate}
+                          onChange={this.handleReviewChange}
+                        />
+                        <small>
+                          Rate: {reviewRate} - {this.returnRateMessage()}
+                        </small>
+                      </section>
+                      <section className="form-group">
+                        <label htmlFor="rateBody">Your Review</label>
+                        <textarea
+                          type="text"
+                          id="rateBody"
+                          className="form-control"
+                          name="reviewBody"
+                          value={reviewBody}
+                          onChange={this.handleReviewChange}
+                          rows="5"
+                        ></textarea>
+                      </section>
+                      <section className="form-group">
+                        <button
+                          type="submit"
+                          className="btn btn-primary"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting
+                            ? "Submitting your review ..."
+                            : "Submit"}
+                        </button>
+                      </section>
+                    </form>
+                  </>
+                ) : (
+                  <p className="h2 text-center">
+                    Please{" "}
+                    <Link to={`/login?returnUrl=/books/${book._id}`}>
+                      login
+                    </Link>{" "}
+                    first or <Link to="/register">create an account</Link>
+                  </p>
+                )}
               </Modal>
             </>
           )}

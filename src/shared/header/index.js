@@ -39,9 +39,9 @@ export default class Header extends Component {
         className={`${"navbar navbar-expand-lg navbar-light fixed-top"} ${header}`}
       >
         <div className="container">
-          <a className={`${"navbar-brand"} ${logo}`} href="#">
+          <Link className={`${"navbar-brand"} ${logo}`} to="/">
             E BOOK
-          </a>
+          </Link>
           <button
             className={`${"navbar-toggler"} ${nav_togger}`}
             type="button"
@@ -97,7 +97,7 @@ export default class Header extends Component {
                 </>
               ) : (
                 <>
-                  <li className={`nav-item dropdown ${headerLink}`}>
+                  <li className={`nav-item dropdown ml-4 ${headerLink}`}>
                     <a
                       className={`nav-link dropdown-toggle ${headeritem}`}
                       tabIndex={-1}
@@ -113,7 +113,7 @@ export default class Header extends Component {
                       <FontAwesomeIcon icon={faUserCircle} />
                     </a>
                     <ul
-                      class="list-unstyled dropdown-menu"
+                      className="list-unstyled dropdown-menu"
                       aria-labelledby="navbarDropdownMenuLink"
                     >
                       <li className={`nav-item ${headerDropdownItem}`}>

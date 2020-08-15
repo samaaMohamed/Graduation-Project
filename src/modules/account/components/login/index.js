@@ -10,6 +10,7 @@ import {
 } from "./style.module.css";
 import AccountService from "modules/account/services/account.service";
 import { UserProvider } from "globals/contexts/auth.context";
+import queryStr from "query-string";
 
 export default class Login extends Component {
   static contextType = UserProvider;
@@ -19,10 +20,16 @@ export default class Login extends Component {
     password: "",
   };
 
+  getQueryUrlParams() {
+    this.queryString = queryStr.parse(this.props.location.search);
+    this.returnUrl = this.queryString.returnUrl;
+  }
+
   componentDidMount() {
+    this.getQueryUrlParams();
     let { isAuthenticated } = this.context;
     if (isAuthenticated) {
-      this.props.history.push("/");
+      this.props.history.push(this.returnUrl || "/");
     }
 
     this._accountService = new AccountService();
@@ -53,7 +60,7 @@ export default class Login extends Component {
       if (this.props.location.pathname !== "/login") {
         window.location.reload();
       } else {
-        this.props.history.push("/");
+        this.props.history.push(this.returnUrl || "/");
       }
     } catch (err) {
       this.setState({
