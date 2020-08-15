@@ -12,9 +12,27 @@ import {
 } from "./style.module.css";
 import { Link } from "react-router-dom";
 import SearchBar from "shared/searchBar";
+import { UserProvider } from "globals/contexts/auth.context";
+import AccountService from "modules/account/services/account.service";
 
 export default class Header extends Component {
+  static contextType = UserProvider;
+  constructor(props) {
+    super(props);
+    this._accountService = new AccountService();
+  }
+
+  logoutUser = async (e) => {
+    e.preventDefault();
+    await this._accountService.logout();
+
+    let { toggleAuthenticationStatus } = this.context;
+    toggleAuthenticationStatus();
+    window.location.href = "/login";
+  };
+
   render() {
+    let { isAuthenticated } = this.context;
     return (
       <nav
         className={`${"navbar navbar-expand-lg navbar-light fixed-top"} ${header}`}
@@ -60,26 +78,45 @@ export default class Header extends Component {
                   Contact
                 </Link>
               </li>
-              <li className={`${"nav-item"} ${headerLink}`}>
-                <Link className={`${"nav-link"} ${headeritem}`} to="/login">
-                  login
-                </Link>
-              </li>
-              <li className={`${"nav-item "} ${headerLink}`}>
-                <Link className={`${"nav-link"} ${headeritem}`} to="/register">
-                  Register
-                </Link>
-              </li>
-              <li className={`${"nav-item "} ${headerLink}`}>
-                <a
-                  className={`${"nav-link"} ${headeritem}`}
-                  href="#"
-                  tabIndex={-1}
-                  aria-disabled="true"
-                >
-                  <FontAwesomeIcon icon={faUserCircle} />
-                </a>
-              </li>
+              {!isAuthenticated ? (
+                <>
+                  <li className={`${"nav-item"} ${headerLink}`}>
+                    <Link className={`${"nav-link"} ${headeritem}`} to="/login">
+                      login
+                    </Link>
+                  </li>
+                  <li className={`${"nav-item "} ${headerLink}`}>
+                    <Link
+                      className={`${"nav-link"} ${headeritem}`}
+                      to="/register"
+                    >
+                      Register
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className={`${"nav-item "} ${headerLink}`}>
+                    <Link
+                      className={`${"nav-link"} ${headeritem}`}
+                      to="/profile"
+                      tabIndex={-1}
+                      aria-disabled="true"
+                    >
+                      <FontAwesomeIcon icon={faUserCircle} />
+                    </Link>
+                  </li>
+                  <li className={`${"nav-item "} ${headerLink}`}>
+                    <a
+                      href="/"
+                      className={`${"nav-link"} ${headeritem}`}
+                      onClick={this.logoutUser}
+                    >
+                      Logout
+                    </a>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

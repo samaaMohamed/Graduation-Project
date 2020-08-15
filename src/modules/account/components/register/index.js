@@ -8,34 +8,101 @@ import {
   label,
   register_btn,
 } from "./style.module.css";
+import { isTextValid, isEmpty } from "globals/helpers/text.validator";
+import { isEmailValid } from "globals/helpers/email.validator";
 
 export default class Register extends Component {
   state = {
-    name: "",
-    email: "",
-    password: "",
+    user: {
+      name: "",
+      email: "",
+      password: "",
+      location: "",
+    },
+    confirmPassword: "",
+    passwordConfirmationErr: "",
   };
-  // handleConfirmationPassword =(e)=>{
-  //   if (password == confirm){
 
-  //   }
-  // }
+  handleConfirmationPassword = (e) => {
+    let {
+      user: { password },
+      confirmPassword,
+    } = this.state;
+
+    if (password !== confirmPassword) {
+      this.setState({
+        passwordConfirmationErr: "The 2 passwords are not similar",
+      });
+    } else {
+      this.setState({
+        passwordConfirmationErr: "",
+      });
+    }
+  };
 
   handleChange = (e) => {
+    let { user } = this.state;
+    if (e.target.name === "confirmPassword") {
+      return this.setState({ confirmPassword: e.target.value }, () =>
+        this.handleConfirmationPassword()
+      );
+    }
     this.setState({
-      [e.target.name]: e.target.value,
+      user: {
+        ...user,
+        [e.target.name]: e.target.value,
+      },
     });
   };
+
+  createUser = (e) => {
+    e.preventDefault();
+    let {
+      user: { name, email, password, location },
+    } = this.state;
+
+    if (
+      isEmpty(name) ||
+      isEmpty(email) ||
+      isEmpty(password) ||
+      isEmpty(location)
+    ) {
+      this.setState({ validationErrorMsg: "Please fill all the fields !" });
+    } else if (!isTextValid(name)) {
+      this.setState({
+        validationErrorMsg:
+          "Please type your name correctly without any symbols !",
+      });
+    } else if (!isEmailValid(email)) {
+      this.setState({ validationErrorMsg: "Please type a valid email !" });
+    } else {
+    }
+  };
+
   render() {
-    let { name, email, password, location } = this.state;
+    let {
+      user: { name, email, password, location },
+      confirmPassword,
+      passwordConfirmationErr,
+      validationErrorMsg,
+    } = this.state;
     return (
       <div className={register_form_container}>
         <h1 className={register_form_heading}>new customer</h1>
-        <form className={register_form} autoComplete="off">
-          <div className={register_form_input}>
+        <form
+          className={register_form}
+          autoComplete="off"
+          onSubmit={this.createUser}
+        >
+          {validationErrorMsg && (
+            <span className="alert alert-danger d-block w-50">
+              {validationErrorMsg}
+            </span>
+          )}
+          <div className={`${register_form_input} form-group`}>
             <label className={label}>Name</label>
             <input
-              className={register_form_control}
+              className={`${register_form_control} form-control`}
               name="name"
               type="name"
               placeholder="name"
@@ -43,10 +110,10 @@ export default class Register extends Component {
               value={name}
             />
           </div>
-          <div className={register_form_input}>
+          <div className={`${register_form_input} form-group`}>
             <label className={label}>Email</label>
             <input
-              className={register_form_control}
+              className={`${register_form_control} form-control`}
               name="email"
               type="email"
               placeholder="Email"
@@ -54,10 +121,10 @@ export default class Register extends Component {
               value={email}
             />
           </div>
-          <div className={register_form_input}>
-            <label className={label}>password</label>
+          <div className={`${register_form_input} form-group`}>
+            <label className={label}>Password</label>
             <input
-              className={register_form_control}
+              className={`${register_form_control} form-control`}
               name="password"
               type="password"
               placeholder="password"
@@ -65,24 +132,25 @@ export default class Register extends Component {
               value={password}
             />
           </div>
-          <div className={register_form_input}>
-            <label className={label}>Password Confirmation </label>
+          <div className={`${register_form_input} form-group`}>
+            <label className={label}>Confirm Password</label>
             <input
-              className={register_form_control}
-              name="password"
+              className={`${register_form_control} form-control`}
+              name="confirmPassword"
               type="password"
-              placeholder="password"
+              placeholder="Type your password again"
               onChange={this.handleChange}
-              value={password}
+              value={confirmPassword}
             />
+            <small>{passwordConfirmationErr}</small>
           </div>
-          <div className={register_form_input}>
+          <div className={`${register_form_input} form-group`}>
             <label className={label}>Location </label>
             <input
-              className={register_form_control}
+              className={`${register_form_control} form-control`}
               name="text"
               type="text"
-              placeholder="eg:cairo,egypt"
+              placeholder="eg: Cairo, Egypt"
               onChange={this.handleChange}
               value={location}
             />

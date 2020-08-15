@@ -8,10 +8,13 @@ import "styles.css";
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
 import * as serviceWorker from "./serviceWorker";
+import UserContext from "globals/contexts/auth.context";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserContext>
+      <App />
+    </UserContext>
   </React.StrictMode>,
   document.getElementById("root")
 );

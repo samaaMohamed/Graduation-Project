@@ -1,13 +1,19 @@
 .login_form_container {
-  margin-top: 10rem;
+  margin: 11.5rem 0;
   text-transform: capitalize;
   vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
 }
 .login_form {
   width: 50%;
-  margin: 2rem auto;
+  margin: auto;
   padding: 2rem;
   border: 1px solid rgb(202, 199, 199);
+  box-shadow: 0 0 15px #ccc;
+  border-radius: 10px;
 }
 .login_form_heading {
   text-align: center;
@@ -42,7 +48,6 @@
   background-color: var(--layout-secondary);
   color: #fff;
   padding: 0.5rem;
-  width: 150px;
   margin-bottom: 2rem;
   border: none;
   border-radius: 0.5rem;

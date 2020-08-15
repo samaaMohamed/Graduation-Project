@@ -4,6 +4,10 @@ const instance = axios.create({
   baseURL: "https://bookstore-dashboard.herokuapp.com/api",
 });
 
+instance.defaults.headers.common["x-access-token"] = localStorage.getItem(
+  "token"
+);
+
 export default class CrudService {
   constructor() {
     this._http = instance;
