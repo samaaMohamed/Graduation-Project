@@ -1,8 +1,5 @@
 import CoreService from "globals/core.service";
-import { UserProvider } from "globals/contexts/auth.context";
-
 export default class AccountService extends CoreService {
-  static contextType = UserProvider;
   constructor() {
     super();
     this.initialize("/users");

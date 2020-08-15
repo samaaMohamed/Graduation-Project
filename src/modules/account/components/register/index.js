@@ -10,8 +10,12 @@ import {
 } from "./style.module.css";
 import { isTextValid, isEmpty } from "globals/helpers/text.validator";
 import { isEmailValid } from "globals/helpers/email.validator";
+import { UserProvider } from "globals/contexts/auth.context";
+import AccountService from "modules/account/services/account.service";
 
 export default class Register extends Component {
+  static contextType = UserProvider;
+
   state = {
     user: {
       name: "",
@@ -22,6 +26,16 @@ export default class Register extends Component {
     confirmPassword: "",
     passwordConfirmationErr: "",
   };
+
+  constructor(props) {
+    super(props);
+    let { isAuthenticated } = this.context;
+    if (isAuthenticated) {
+      this.props.history.push("/");
+    }
+
+    this._accountService = new AccountService();
+  }
 
   handleConfirmationPassword = (e) => {
     let {
@@ -55,8 +69,10 @@ export default class Register extends Component {
     });
   };
 
-  createUser = (e) => {
+  createUser = async (e) => {
     e.preventDefault();
+    let { toggleAuthenticationStatus } = this.context;
+
     let {
       user: { name, email, password, location },
     } = this.state;
@@ -76,6 +92,30 @@ export default class Register extends Component {
     } else if (!isEmailValid(email)) {
       this.setState({ validationErrorMsg: "Please type a valid email !" });
     } else {
+      try {
+        await this._accountService.create({ name, email, password, location });
+        await this._accountService.login({ email, password });
+        this.setState({
+          isLoading: false,
+          success: "Logged in successfully",
+          error: "",
+        });
+        toggleAuthenticationStatus();
+        if (this.props.location.pathname !== "/register") {
+          window.location.reload();
+        } else {
+          this.props.history.push("/");
+        }
+      } catch (err) {
+        this.setState({
+          isLoading: false,
+          success: null,
+          error: err.response && err.response.data.msg,
+        });
+        setTimeout(() => {
+          this.setState({ error: null });
+        }, 3000);
+      }
     }
   };
 
@@ -85,6 +125,9 @@ export default class Register extends Component {
       confirmPassword,
       passwordConfirmationErr,
       validationErrorMsg,
+      success,
+      error,
+      isLoading,
     } = this.state;
     return (
       <div className={register_form_container}>
@@ -155,9 +198,13 @@ export default class Register extends Component {
               value={location}
             />
           </div>
-          <button className={register_btn} type="submit">
-            create
+          <button className={register_btn} type="submit" disabled={isLoading}>
+            {isLoading ? "Loading ..." : "Create"}
           </button>
+          {!!success && (
+            <p className="alert alert-success text-center">{success}</p>
+          )}
+          {!!error && <p className="alert alert-danger text-center">{error}</p>}
         </form>
       </div>
     );

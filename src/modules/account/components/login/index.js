@@ -9,15 +9,22 @@ import {
   login_btn,
 } from "./style.module.css";
 import AccountService from "modules/account/services/account.service";
+import { UserProvider } from "globals/contexts/auth.context";
 
 export default class Login extends Component {
+  static contextType = UserProvider;
+
   state = {
     email: "",
     password: "",
   };
 
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    let { isAuthenticated } = this.context;
+    if (isAuthenticated) {
+      this.props.history.push("/");
+    }
+
     this._accountService = new AccountService();
   }
 
