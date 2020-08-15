@@ -80,3 +80,12 @@ p + p {
 .react-responsive-modal-modal {
   width: 90%;
 }
+
+.dropdown-menu {
+  background-color: var(--background-secondary) !important;
+}
+
+.dropdown-menu a:hover {
+  background-color: #fff !important;
+  color: var(--background-secondary) !important;
+}

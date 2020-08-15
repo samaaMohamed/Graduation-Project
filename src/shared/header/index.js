@@ -9,6 +9,7 @@ import {
   headeritem,
   nav_togger,
   header_bar,
+  headerDropdownItem,
 } from "./style.module.css";
 import { Link } from "react-router-dom";
 import SearchBar from "shared/searchBar";
@@ -96,24 +97,47 @@ export default class Header extends Component {
                 </>
               ) : (
                 <>
-                  <li className={`${"nav-item "} ${headerLink}`}>
-                    <Link
-                      className={`${"nav-link"} ${headeritem}`}
-                      to="/profile"
+                  <li className={`nav-item dropdown ${headerLink}`}>
+                    <a
+                      className={`nav-link dropdown-toggle ${headeritem}`}
                       tabIndex={-1}
                       aria-disabled="true"
+                      href="/"
+                      onClick={(e) => e.preventDefault()}
+                      id="navbarDropdownMenuLink"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
                     >
                       <FontAwesomeIcon icon={faUserCircle} />
-                    </Link>
-                  </li>
-                  <li className={`${"nav-item "} ${headerLink}`}>
-                    <a
-                      href="/"
-                      className={`${"nav-link"} ${headeritem}`}
-                      onClick={this.logoutUser}
-                    >
-                      Logout
                     </a>
+                    <ul
+                      class="list-unstyled dropdown-menu"
+                      aria-labelledby="navbarDropdownMenuLink"
+                    >
+                      <li className={`nav-item ${headerDropdownItem}`}>
+                        <Link
+                          className={`nav-link dropdown-item ${headeritem}`}
+                          to="/profile"
+                          tabIndex={-1}
+                          aria-disabled="true"
+                        >
+                          Profile
+                        </Link>
+                      </li>
+                      <li className={`nav-item ${headerDropdownItem}`}>
+                        <a
+                          href="/"
+                          className={`nav-link dropdown-item ${headeritem}`}
+                          onClick={this.logoutUser}
+                          tabIndex={-1}
+                          aria-disabled="true"
+                        >
+                          Logout
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                 </>
               )}

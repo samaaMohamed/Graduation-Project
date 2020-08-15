@@ -5,9 +5,16 @@
   color: white !important;
   font-size: 2rem !important;
 }
+
 .headerLink .headeritem {
-  color: white !important ;
+  color: white !important;
   font-size: 1.3rem;
+}
+
+.headerDropdownItem .headeritem {
+  padding-left: 0.4rem;
+  font-weight: 400;
+  text-align: center;
 }
 
 .nav_togger {
@@ -19,5 +26,4 @@
   border: 1px solid #fff;
   border-radius: 10px;
   font-size: 1rem;
-  
 }
