@@ -29,12 +29,15 @@ export default class Register extends Component {
 
   constructor(props) {
     super(props);
+
+    this._accountService = new AccountService();
+  }
+
+  componentDidMount() {
     let { isAuthenticated } = this.context;
     if (isAuthenticated) {
       this.props.history.push("/");
     }
-
-    this._accountService = new AccountService();
   }
 
   handleConfirmationPassword = (e) => {
