@@ -5,6 +5,7 @@ import Contacts from "modules/contact";
 import Login from "modules/account/components/login";
 import Register from "modules/account/components/register";
 import BookDetails from "modules/books/components/bookDetails";
+import CartPage from "modules/order/components/cart";
 
 export default [
   { path: "/", component: Home },
@@ -14,4 +15,5 @@ export default [
   { path: "/login", component: Login },
   { path: "/register", component: Register },
   { path: "/books/:id", component: BookDetails },
+  { path: "/cart", component: CartPage },
 ];

@@ -11,10 +11,45 @@ import {
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faStar } from "@fortawesome/free-solid-svg-icons";
+import { CartProvider } from "globals/contexts/cart.context";
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
 
 export default class BookCard extends Component {
+  static contextType = CartProvider;
+  state = {
+    addedToCart: false,
+    unAuth: false,
+  };
+
+  addToCart = () => {
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      this.setState({ unAuth: true });
+      return;
+    }
+    let order = this.generateOrderObject();
+    this.context.addOrder(order);
+    this.setState({ addedToCart: true });
+  };
+
+  generateOrderObject = () => {
+    let {
+      book: { name, price, currency, _id },
+    } = this.props;
+    return {
+      bookName: name,
+      bookId: _id,
+      price,
+      currency,
+      quantity: 1,
+      status: "ongoing",
+    };
+  };
+
   render() {
     let { book } = this.props;
+    let { addedToCart, unAuth } = this.state;
     return (
       <div className={book_card}>
         <Link to={`/books/${book._id}`}>
@@ -40,13 +75,42 @@ export default class BookCard extends Component {
             <span>{book.rate}</span>
           </p>
         </div>
-        <button className={add_btn}>
-          <FontAwesomeIcon
-            className={cart_icon}
-            icon={faShoppingCart}
-          ></FontAwesomeIcon>
-          add to cart
+        <button
+          className={add_btn}
+          disabled={book.inCart || addedToCart}
+          onClick={this.addToCart}
+        >
+          {!book.inCart && !addedToCart ? (
+            <>
+              <FontAwesomeIcon
+                className={cart_icon}
+                icon={faShoppingCart}
+              ></FontAwesomeIcon>
+              <span>add to cart</span>
+            </>
+          ) : (
+            <span>Added To Cart</span>
+          )}
         </button>
+        <Modal
+          open={unAuth}
+          onClose={() => {
+            this.setState({ unAuth: false });
+          }}
+          center
+          styles={{
+            modal: {
+              animation: `${
+                unAuth ? "customEnterAnimation" : "customLeaveAnimation"
+              } 500ms`,
+            },
+          }}
+        >
+          <p className="h2 text-center">
+            Please <Link to={`/login?returnUrl=/books`}>login</Link> first or{" "}
+            <Link to="/register">create an account</Link>
+          </p>
+        </Modal>
       </div>
     );
   }

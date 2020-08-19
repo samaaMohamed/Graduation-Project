@@ -9,11 +9,14 @@ import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
 import * as serviceWorker from "./serviceWorker";
 import UserContext from "globals/contexts/auth.context";
+import CartContext from "globals/contexts/cart.context";
 
 ReactDOM.render(
   <React.StrictMode>
     <UserContext>
-      <App />
+      <CartContext>
+        <App />
+      </CartContext>
     </UserContext>
   </React.StrictMode>,
   document.getElementById("root")

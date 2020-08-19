@@ -10,7 +10,18 @@ export default class BookService extends CoreService {
   async list(page = 1, limit = 10) {
     let reqUrl = `${this.url}/list?page=${page}&limit=${limit}`;
 
-    let { data } = await this._http.get(reqUrl);
+    let { data } = await this._http.get(reqUrl),
+      orders = JSON.parse(localStorage.getItem("orders")) || [];
+    data.books.forEach((book) => {
+      for (let order of orders) {
+        if (book.name === order.bookName) {
+          book.inCart = true;
+          break;
+        } else {
+          book.inCart = false;
+        }
+      }
+    });
     return data;
   }
 
@@ -43,9 +54,16 @@ export default class BookService extends CoreService {
   }
 
   async getBookDetails(bookId) {
-    let reqUrl = `${this.url}/${bookId}`;
+    let reqUrl = `${this.url}/${bookId}`,
+      { data: record } = await this._http.get(reqUrl),
+      orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-    let { data: record } = await this._http.get(reqUrl);
+    for (let order of orders) {
+      if (record.name === order.bookName) {
+        record.inCart = true;
+        break;
+      }
+    }
     return record;
   }
 

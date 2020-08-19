@@ -7,7 +7,6 @@ import {
   contact_form_submit,
   contact_form_control_message,
 } from "./style.module.css";
-import { sendMessage } from "../services/contact.services";
 import {
   isValidText,
   isEmailValid,
@@ -15,6 +14,7 @@ import {
   isPhoneValid,
 } from "../services/validation.services";
 import Info from "../info";
+import ContactService from "../services/contact.services";
 
 export default class Form extends Component {
   state = {
@@ -25,6 +25,11 @@ export default class Form extends Component {
     success: false,
     errorMsg: "",
   };
+
+  constructor(props) {
+    super(props);
+    this._contactService = new ContactService();
+  }
 
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -58,8 +63,9 @@ export default class Form extends Component {
     } else if (!isPhoneValid(phone)) {
       this.setState({ errorMsg: "Please type a valid phone number !" });
     } else {
-      this.setState({ errorMsg: "" });
-      sendMessage({ name, email, phone, message })
+      this.setState({ errorMsg: "", isLoading: true });
+      this._contactService
+        .create({ name, email, phone, message })
         .then((response) => {
           alert("Your message has been sent successfully");
           this.setState({
@@ -67,15 +73,17 @@ export default class Form extends Component {
             email: "",
             phone: "",
             message: "",
+            isLoading: false,
           });
         })
         .catch((err) => {
+          this.setState({ isLoading: false });
           alert(err.response.data.msg);
         });
     }
   };
   render() {
-    let { name, email, phone, message, errorMsg } = this.state;
+    let { name, email, phone, message, errorMsg, isLoading } = this.state;
     return (
       <>
         <section className={contact}>
@@ -125,8 +133,12 @@ export default class Form extends Component {
                     onChange={this.handleChange}
                     value={message}
                   ></textarea>
-                  <button className={contact_form_submit} type="submit">
-                    Send
+                  <button
+                    className={contact_form_submit}
+                    type="submit"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Sending ..." : "Send"}
                   </button>
                 </form>
               </div>

@@ -22,20 +22,17 @@ import { Link } from "react-router-dom";
 import BookService from "modules/books/services/book.service";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
-import { UserProvider } from "globals/contexts/auth.context";
+import { CartProvider } from "globals/contexts/cart.context";
 
 export default class BookDetails extends Component {
-  static contextType = UserProvider;
+  static contextType = CartProvider;
   state = {
     book: null,
     isModalOpened: false,
     isSubmitting: false,
     reviewBody: "",
     reviewRate: 1,
-    user: {
-      name: "Samaa",
-      id: "1",
-    },
+    addedToCart: false,
   };
 
   constructor(props) {
@@ -43,8 +40,46 @@ export default class BookDetails extends Component {
     this._bookService = new BookService();
   }
 
+  addToCart = () => {
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      this.setState({ unAuth: true });
+      return;
+    }
+    let order = this.generateOrderObject();
+    this.context.addOrder(order);
+    this.setState({ addedToCart: true });
+  };
+
+  generateOrderObject = () => {
+    let {
+      book: { name, price, currency, _id },
+    } = this.state;
+    return {
+      bookName: name,
+      bookId: _id,
+      price,
+      currency,
+      quantity: 1,
+      status: "ongoing",
+    };
+  };
+
   async componentDidMount() {
-    this.setState({ isLoading: true });
+    let user = JSON.parse(localStorage.getItem("user"));
+    this.setState({
+      isLoading: true,
+      book: null,
+      isModalOpened: false,
+      isSubmitting: false,
+      reviewBody: "",
+      reviewRate: 1,
+      isAuthenticated: !!user,
+      user: {
+        name: user && user.name,
+        id: user && user._id,
+      },
+    });
     this.bookId = this.props.match.params.id;
     try {
       let book = await this._bookService.getBookDetails(this.bookId);
@@ -126,8 +161,9 @@ export default class BookDetails extends Component {
       reviewBody,
       reviewRate,
       isSubmitting,
+      addedToCart,
+      isAuthenticated,
     } = this.state;
-    let { isAuthenticated } = this.context;
     return (
       <div className={book_details}>
         <div className="container">
@@ -163,12 +199,22 @@ export default class BookDetails extends Component {
                     <span className={rate}>{book.rate}</span>
                   </p>
                   {isAuthenticated && (
-                    <button className={add_btn}>
-                      <FontAwesomeIcon
-                        className={cart_icon}
-                        icon={faShoppingCart}
-                      ></FontAwesomeIcon>
-                      add to cart
+                    <button
+                      className={add_btn}
+                      disabled={book.inCart || addedToCart}
+                      onClick={this.addToCart}
+                    >
+                      {!book.inCart && !addedToCart ? (
+                        <>
+                          <FontAwesomeIcon
+                            className={cart_icon}
+                            icon={faShoppingCart}
+                          ></FontAwesomeIcon>
+                          <span>add to cart</span>
+                        </>
+                      ) : (
+                        <span>Added To Cart</span>
+                      )}
                     </button>
                   )}
                   <h3>Description</h3>
