@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import SocialLinks from "shared/socialLinks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle, faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserCircle,
+  faBars,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   header,
   logo,
@@ -10,6 +14,7 @@ import {
   nav_togger,
   header_bar,
   headerDropdownItem,
+  cartICon,
 } from "./style.module.css";
 import { Link } from "react-router-dom";
 import SearchBar from "shared/searchBar";
@@ -97,6 +102,14 @@ export default class Header extends Component {
                 </>
               ) : (
                 <>
+                  <li className="nav-item">
+                    <Link
+                      to="/cart"
+                      className={`nav-link ${headeritem} ${cartICon}`}
+                    >
+                      <FontAwesomeIcon icon={faShoppingCart} />
+                    </Link>
+                  </li>
                   <li className={`nav-item dropdown ml-4 ${headerLink}`}>
                     <a
                       className={`nav-link dropdown-toggle ${headeritem}`}
