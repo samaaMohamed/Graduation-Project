@@ -22,6 +22,7 @@ export default class Register extends Component {
       email: "",
       password: "",
       location: "",
+      phone: "",
     },
     confirmPassword: "",
     passwordConfirmationErr: "",
@@ -77,14 +78,15 @@ export default class Register extends Component {
     let { toggleAuthenticationStatus } = this.context;
 
     let {
-      user: { name, email, password, location },
+      user: { name, email, password, location, phone },
     } = this.state;
 
     if (
       isEmpty(name) ||
       isEmpty(email) ||
       isEmpty(password) ||
-      isEmpty(location)
+      isEmpty(location) ||
+      isEmpty(phone)
     ) {
       this.setState({ validationErrorMsg: "Please fill all the fields !" });
     } else if (!isTextValid(name)) {
@@ -96,7 +98,13 @@ export default class Register extends Component {
       this.setState({ validationErrorMsg: "Please type a valid email !" });
     } else {
       try {
-        await this._accountService.create({ name, email, password, location });
+        await this._accountService.create({
+          name,
+          email,
+          password,
+          location,
+          phone,
+        });
         await this._accountService.login({ email, password });
         this.setState({
           isLoading: false,
@@ -124,7 +132,7 @@ export default class Register extends Component {
 
   render() {
     let {
-      user: { name, email, password, location },
+      user: { name, email, password, location, phone },
       confirmPassword,
       passwordConfirmationErr,
       validationErrorMsg,
@@ -188,13 +196,26 @@ export default class Register extends Component {
               onChange={this.handleChange}
               value={confirmPassword}
             />
-            <small>{passwordConfirmationErr}</small>
+            {passwordConfirmationErr && (
+              <small>{passwordConfirmationErr}</small>
+            )}
+          </div>
+          <div className={`${register_form_input} form-group`}>
+            <label className={label}>Phone number </label>
+            <input
+              className={`${register_form_control} form-control`}
+              name="phone"
+              type="text"
+              placeholder="eg: 01xxxxxxxx"
+              onChange={this.handleChange}
+              value={phone}
+            />
           </div>
           <div className={`${register_form_input} form-group`}>
             <label className={label}>Location </label>
             <input
               className={`${register_form_control} form-control`}
-              name="text"
+              name="location"
               type="text"
               placeholder="eg: Cairo, Egypt"
               onChange={this.handleChange}
