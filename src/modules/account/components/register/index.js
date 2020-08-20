@@ -98,7 +98,13 @@ export default class Register extends Component {
       this.setState({ validationErrorMsg: "Please type a valid email !" });
     } else {
       try {
-        await this._accountService.create({ name, email, password, location });
+        await this._accountService.create({
+          name,
+          email,
+          password,
+          location,
+          phone,
+        });
         await this._accountService.login({ email, password });
         this.setState({
           isLoading: false,
