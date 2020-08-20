@@ -5,6 +5,7 @@ import {
   faUserCircle,
   faBars,
   faShoppingCart,
+  faBookOpen,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   header,
@@ -45,7 +46,7 @@ export default class Header extends Component {
       >
         <div className="container">
           <Link className={`${"navbar-brand"} ${logo}`} to="/">
-            E BOOK
+            <FontAwesomeIcon icon={faBookOpen} className="mr-3" /> E BOOK
           </Link>
           <button
             className={`${"navbar-toggler"} ${nav_togger}`}

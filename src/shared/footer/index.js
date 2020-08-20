@@ -9,7 +9,7 @@ export default class Footer extends Component {
         <span className={footerSocialLinks}>
           <SocialLinks />
         </span>
-        <p>Copyright © Samaa Mohamed 2020</p>
+        <p>Copyright © Samaa & Khloud 2020</p>
       </footer>
     );
   }
