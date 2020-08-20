@@ -13,7 +13,11 @@ export default class SocialLinks extends Component {
       <div className={styles.socialLinks}>
         <ul className={`list-unstyled d-flex`}>
           <li>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon
                 className={`${styles.socialLinks_Facebook} ${styles.icon}`}
                 icon={faFacebookF}
@@ -22,7 +26,11 @@ export default class SocialLinks extends Component {
           </li>
 
           <li>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon
                 className={`${styles.socialLinks_twitter} ${styles.icon}`}
                 icon={faTwitter}
@@ -30,7 +38,11 @@ export default class SocialLinks extends Component {
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon
                 className={`${styles.socialLinks_linkedin} ${styles.icon}`}
                 icon={faLinkedin}

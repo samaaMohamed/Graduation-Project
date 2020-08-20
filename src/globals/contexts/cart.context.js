@@ -24,9 +24,10 @@ export default class CartContext extends Component {
   };
 
   removeOrder = (orderName) => {
-    let orders = orders.filter((order) => order.name !== orderName);
-    localStorage.setItem("orders", JSON.stringify(orders));
-    this.setState({ orders });
+    let { orders } = this.state;
+    let ordersList = orders.filter((order) => order.name !== orderName);
+    localStorage.setItem("orders", JSON.stringify(ordersList));
+    this.setState({ ordersList });
   };
 
   clearCart = () => {

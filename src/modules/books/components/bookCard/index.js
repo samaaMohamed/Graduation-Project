@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   book_card,
-  book_card_heading,
   book_card_rate_icon,
   book_old_price,
   book_rate,

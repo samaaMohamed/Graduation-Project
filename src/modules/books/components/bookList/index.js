@@ -6,7 +6,6 @@ import {
   active,
   category_btn,
   back_btn,
-  booklist_bar,
 } from "./style.module.css";
 import BookService from "modules/books/services/book.service";
 import CategoryService from "modules/books/services/category.service";
@@ -14,7 +13,6 @@ import queryStr from "query-string";
 import Pagination from "shared/pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import SearchBar from "shared/searchBar";
 import Loading from "shared/loading";
 
 export default class BookList extends Component {
@@ -59,7 +57,7 @@ export default class BookList extends Component {
   updateUrlWithPageOfBookList = (page = this.queryString["page"] || 1) => {
     if (
       !this.queryString["page"] ||
-      (this.queryString["page"] && page != this.queryString["page"])
+      (this.queryString["page"] && String(page) !== this.queryString["page"])
     ) {
       this.setSpecificQueryParam("page", page);
       window.location.reload();
