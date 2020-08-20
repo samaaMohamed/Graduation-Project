@@ -1,0 +1,26 @@
+.profile {
+  margin: 6rem 0;
+}
+.profile_intro {
+}
+
+.order_item {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+}
+.order_item .text_red {
+  color: tomato
+}
+
+.order_item:last-of-type {
+  border-bottom: none;
+}
+
+.profile_orders {
+  margin-top: 4rem;
+  padding: 1rem;
+}
+
+.profile_orders h2 {
+  font-size: 2.2rem;
+}

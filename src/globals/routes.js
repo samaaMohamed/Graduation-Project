@@ -6,6 +6,7 @@ import Login from "modules/account/components/login";
 import Register from "modules/account/components/register";
 import BookDetails from "modules/books/components/bookDetails";
 import CartPage from "modules/order/components/cart";
+import Profile from "modules/account/components/profile";
 
 export default [
   { path: "/", component: Home },
@@ -16,4 +17,5 @@ export default [
   { path: "/register", component: Register },
   { path: "/books/:id", component: BookDetails },
   { path: "/cart", component: CartPage },
+  { path: "/profile", component: Profile },
 ];
