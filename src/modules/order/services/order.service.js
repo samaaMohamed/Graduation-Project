@@ -19,4 +19,11 @@ export default class OrderService extends CoreService {
     let { data: records } = await this._http.get(reqUrl);
     return records;
   }
+
+  async cancelOrder(orderId, order) {
+    let reqUrl = `${this.url}/orders/${orderId}`;
+
+    let { data: records } = await this._http.put(reqUrl, order);
+    return records;
+  }
 }

@@ -8,6 +8,7 @@ import {
   profile_orders,
   text_red,
 } from "./style.module.css";
+import Loading from "shared/loading";
 
 export default class Profile extends Component {
   state = {
@@ -19,13 +20,16 @@ export default class Profile extends Component {
   }
   async componentDidMount() {
     let userId = JSON.parse(localStorage.getItem("user"))._id;
+    if (!userId) this.props.history.push("/login?returnUrl=profile");
+    this.setState({ isLoading: true });
     let user = await this._userService.getById(userId);
-    this.setState({ user });
+    this.setState({ user, isLoading: false });
   }
   render() {
-    let { user } = this.state;
+    let { user, isLoading } = this.state;
     return (
       <div className={`${profile} container`}>
+        <Loading isLoading={isLoading} />
         {user ? (
           <>
             <section className={`${profile_intro} text-center`}>
@@ -60,7 +64,12 @@ export default class Profile extends Component {
             </section>
           </>
         ) : (
-          <p className="text-center">Loading ...</p>
+          !isLoading && (
+            <p>
+              An error occurred, please refresh or make sure to{" "}
+              <a href="/login?returnUrl=profile">login</a>
+            </p>
+          )
         )}
       </div>
     );

@@ -23,6 +23,7 @@ import BookService from "modules/books/services/book.service";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { CartProvider } from "globals/contexts/cart.context";
+import Loading from "shared/loading";
 
 export default class BookDetails extends Component {
   static contextType = CartProvider;
@@ -167,7 +168,7 @@ export default class BookDetails extends Component {
     return (
       <div className={book_details}>
         <div className="container">
-          {isLoading && <p className="text-center">Loading ...</p>}
+          <Loading isLoading={isLoading} />
           {!!errMsg && <p className="text-center">{errMsg}</p>}
           {book && (
             <>

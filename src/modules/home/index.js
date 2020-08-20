@@ -8,7 +8,7 @@ export default class Home extends Component {
     return (
       <>
         <Intro history={this.props.history} />
-        <main className="container">
+        <main className="container" style={{ marginBottom: "11rem" }}>
           <BestReviewedBooks />
           <LatestAddedBooks />
         </main>

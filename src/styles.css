@@ -43,8 +43,10 @@ body {
   --btn-hover: #024b88;
 }
 
-body.freezed {
-  overflow: hidden;
+body {
+  min-height: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 h1,
@@ -88,4 +90,8 @@ p + p {
 .dropdown-menu a:hover {
   background-color: #fff !important;
   color: var(--background-secondary) !important;
+}
+
+.react-responsive-modal-modal {
+  width: 90%;
 }

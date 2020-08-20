@@ -4,6 +4,7 @@ import { CartProvider } from "globals/contexts/cart.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import OrderService from "modules/order/services/order.service";
+import Loading from "shared/loading";
 
 export default class CartPage extends Component {
   static contextType = CartProvider;
@@ -44,8 +45,10 @@ export default class CartPage extends Component {
       { orders } = this.state;
 
     if (orders.length > 0) {
+      this.setState({ isLoading: true });
       await this._orderService.checkoutOrders(userId, orders);
       this.clearCart();
+      this.setState({ isLoading: false });
       alert("Your orders have been placed successfully");
       this.props.history.push("/tracking");
     }
@@ -69,10 +72,11 @@ export default class CartPage extends Component {
   };
 
   render() {
-    let { orders } = this.state;
+    let { orders, isLoading } = this.state;
 
     return (
-      <section className="cart-container container">
+      <section className="cart-container container page">
+        <Loading isLoading={isLoading} />
         <section className="d-flex justify-content-between">
           <h1>Shopping Cart</h1>
           <section className="cart-actions d-flex flex-direction-column">

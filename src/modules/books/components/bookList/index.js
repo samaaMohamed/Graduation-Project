@@ -15,6 +15,7 @@ import Pagination from "shared/pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "shared/searchBar";
+import Loading from "shared/loading";
 
 export default class BookList extends Component {
   _bookService;
@@ -139,7 +140,7 @@ export default class BookList extends Component {
     return (
       <div className={book_list}>
         <div className="container">
-          {isLoading && <p className="text-center">Loading ...</p>}
+          <Loading isLoading={isLoading} />
           {isFailed && (
             <>
               <button className={back_btn} onClick={this.goBack}>

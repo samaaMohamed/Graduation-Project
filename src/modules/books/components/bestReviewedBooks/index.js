@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BooksSection from "./../booksSection";
 import BookService from "modules/books/services/book.service";
+import Loading from "shared/loading";
 
 export default class BestReviewedBooks extends Component {
   _bookService;
@@ -24,11 +25,8 @@ export default class BestReviewedBooks extends Component {
     let { books, isLoading } = this.state;
     return (
       <>
-        {isLoading ? (
-          <p>Loading ...</p>
-        ) : (
-          <BooksSection title="Best Reviewed Books" books={books} />
-        )}
+        <Loading isLoading={isLoading} />
+        <BooksSection title="Best Reviewed Books" books={books} />
       </>
     );
   }

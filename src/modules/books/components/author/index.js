@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import BookCard from "../bookCard";
 import { book_list } from "./style.module.css";
 import AuthorService from "modules/books/services/author.service";
+import Loading from "shared/loading";
 
 export default class Author extends Component {
   state = {
@@ -29,7 +30,7 @@ export default class Author extends Component {
     return (
       <div className={book_list}>
         <div className="container">
-          {isLoading && <p className="text-center">Loading ...</p>}
+          <Loading isLoading={isLoading} />
           {!!errMsg && <p className="text-center">{errMsg}</p>}
           {!isLoading && !errMsg && books.length > 0 && (
             <>
