@@ -47,7 +47,7 @@ export default class CartPage extends Component {
       await this._orderService.checkoutOrders(userId, orders);
       this.clearCart();
       alert("Your orders have been placed successfully");
-      this.props.history.push("/books");
+      this.props.history.push("/tracking");
     }
   };
 

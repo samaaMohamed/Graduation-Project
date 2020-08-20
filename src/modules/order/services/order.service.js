@@ -12,4 +12,11 @@ export default class OrderService extends CoreService {
     let { data: record } = await this._http.post(reqUrl, orders);
     return record;
   }
+
+  async getOngoingOrders(userId) {
+    let reqUrl = `${this.url}/${userId}/orders/ongoing`;
+
+    let { data: records } = await this._http.get(reqUrl);
+    return records;
+  }
 }

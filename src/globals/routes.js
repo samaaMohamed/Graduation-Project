@@ -7,6 +7,7 @@ import Register from "modules/account/components/register";
 import BookDetails from "modules/books/components/bookDetails";
 import CartPage from "modules/order/components/cart";
 import Profile from "modules/account/components/profile";
+import TrackingPage from "modules/order/components/tracking";
 
 export default [
   { path: "/", component: Home },
@@ -18,4 +19,5 @@ export default [
   { path: "/books/:id", component: BookDetails },
   { path: "/cart", component: CartPage },
   { path: "/profile", component: Profile },
+  { path: "/tracking", component: TrackingPage },
 ];

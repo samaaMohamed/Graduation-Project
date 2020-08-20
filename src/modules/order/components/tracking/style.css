@@ -1,0 +1,13 @@
+.tracking-orders {
+  margin: 8rem 0
+}
+
+.order-item {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+}
+
+small {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 0.5rem;
+}
