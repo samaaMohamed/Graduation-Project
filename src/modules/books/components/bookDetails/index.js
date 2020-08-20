@@ -11,9 +11,6 @@ import {
   icon,
   add_btn,
   cart_icon,
-  book__reviews,
-  add_review_section,
-  review__btn,
   book__reviews__list,
 } from "./style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -222,25 +219,23 @@ export default class BookDetails extends Component {
                   <p className={description}>{book.description}</p>
                 </div>
               </div>
-              <section className={book__reviews}>
-                <section className={add_review_section}>
-                  <button
-                    className={review__btn}
-                    onClick={this.toggleModalState}
-                  >
-                    Add Review
-                  </button>
-                </section>
-              </section>
-              <section className={book__reviews__list}>
-                {book.reviews.length > 0 && (
+              <section className={`${book__reviews__list} mt-5`}>
+                <div className="d-flex justify-content-between">
                   <h2>Reviews ({book.reviews.length})</h2>
-                )}
+                  {isAuthenticated && (
+                    <button
+                      className="btn btn-danger"
+                      onClick={this.toggleModalState}
+                    >
+                      Add Review
+                    </button>
+                  )}
+                </div>
                 <ul className="list-unstyled">
                   {book.reviews.length > 0 &&
                     book.reviews.map((review) => (
-                      <li className="border-bottom p-4" key={review._id}>
-                        <h3 className="d-flex justify-content-between mb-2">
+                      <li className="border-bottom py-4" key={review._id}>
+                        <h3 className="d-flex justify-content-between mb-2 h4">
                           <p>{review.author.name}</p>
                           <small>
                             <FontAwesomeIcon
