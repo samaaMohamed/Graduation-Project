@@ -4,7 +4,7 @@
   text-transform: capitalize;
   transition: all 0.3s;
   border-radius: 3px;
-  background-color: rgb(241, 236, 236);
+  background-color: rgb(255 245 245);
   font-size: 1rem;
   border: 1px solid rgb(182, 179, 179);
 }
@@ -15,16 +15,21 @@
 }
 .book_card img {
   margin-bottom: 1rem;
-  max-width: 100%;
+  width: 100%;
   border-radius: 3px;
-  height: 10rem;
+  height: 20rem;
 }
 .book_card_heading {
   color: var(--text-secondary);
   text-transform: capitalize;
   margin-bottom: 1rem;
+  font-size: 1.5rem;
+  word-spacing: 0 !important;
+}
+.book_card_heading:hover {
   text-decoration: none;
 }
+
 .book_old_price {
   text-decoration: line-through;
 }

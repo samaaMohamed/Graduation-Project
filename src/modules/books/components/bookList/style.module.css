@@ -2,13 +2,14 @@
   margin: 10rem 0 7rem;
 }
 .book_list_category {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .book_list_category .category_btn {
   margin: 0 0.4rem 1rem 0;
   padding: 0.5rem 1rem;
-  text-transform: capitalize;
-  width: 150px;
+  text-transform: uppercase;
   background-color: var(--layout-secondary);
   color: white;
   border: 1px solid var(--layout-secondary);

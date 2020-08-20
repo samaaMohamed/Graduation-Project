@@ -182,11 +182,12 @@ export default class BookDetails extends Component {
                   <Link to={`/author/${book.author._id}`}>
                     <span className={author}>{book.author.name}</span>
                   </Link>
-                  <span>(author)</span>
                   <p className={book_price}>
-                    <span className={old_price}>
-                      {book.currency} {book.old_price}
-                    </span>
+                    {book.old_price && (
+                      <span className={old_price}>
+                        {book.currency} {book.old_price}
+                      </span>
+                    )}
                     <span className={new_price}>
                       {book.currency} {book.price}
                     </span>

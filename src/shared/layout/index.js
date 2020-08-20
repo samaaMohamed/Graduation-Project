@@ -8,7 +8,9 @@ export default class Layout extends Component {
     return (
       <>
         <Header />
-        {children}
+        <main style={{ marginBottom: "25rem", marginTop: "10rem" }}>
+          {children}
+        </main>
         <Footer />
       </>
     );
