@@ -75,72 +75,74 @@ export default class CartPage extends Component {
     let { orders, isLoading } = this.state;
 
     return (
-      <section className="cart-container container page">
-        <Loading isLoading={isLoading} />
-        <section className="d-flex justify-content-between">
-          <h1>Shopping Cart</h1>
-          <section className="cart-actions d-flex flex-direction-column">
-            <button
-              className="btn btn-success mr-3"
-              onClick={this.checkout}
-              disabled={orders.length < 1}
-            >
-              Checkout
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={this.clearCart}
-              disabled={orders.length < 1}
-            >
-              Clear
-            </button>
+      <main style={{ marginBottom: "25rem", marginTop: "10rem" }}>
+        <section className="cart-container container page">
+          <Loading isLoading={isLoading} />
+          <section className="d-flex justify-content-between">
+            <h1>Shopping Cart</h1>
+            <section className="cart-actions d-flex flex-direction-column">
+              <button
+                className="btn btn-success mr-3"
+                onClick={this.checkout}
+                disabled={orders.length < 1}
+              >
+                Checkout
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={this.clearCart}
+                disabled={orders.length < 1}
+              >
+                Clear
+              </button>
+            </section>
           </section>
+          {orders.length > 0 ? (
+            <table className="table table-borderless mt-5">
+              <thead>
+                <th scope="col" colSpan="2">
+                  Item
+                </th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+              </thead>
+              <tbody>
+                {orders.map((order, index) => (
+                  <tr key={index}>
+                    <td colSpan="2">
+                      <a href={`/books/${order.bookId}`}>{order.bookName}</a>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        name="quantity"
+                        id="quantity"
+                        value={order.quantity}
+                        onChange={(e) => this.changeQuantity(e, order.bookName)}
+                      />
+                    </td>
+                    <td>
+                      {order.currency}
+                      {order.price}
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => this.removeItemFromCart(order.bookName)}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className="text-center my-5">No items in the cart !</p>
+          )}
         </section>
-        {orders.length > 0 ? (
-          <table className="table table-borderless mt-5">
-            <thead>
-              <th scope="col" colSpan="2">
-                Item
-              </th>
-              <th scope="col">Qty</th>
-              <th scope="col">Price</th>
-              <th scope="col">Actions</th>
-            </thead>
-            <tbody>
-              {orders.map((order, index) => (
-                <tr key={index}>
-                  <td colSpan="2">
-                    <a href={`/books/${order.bookId}`}>{order.bookName}</a>
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      name="quantity"
-                      id="quantity"
-                      value={order.quantity}
-                      onChange={(e) => this.changeQuantity(e, order.bookName)}
-                    />
-                  </td>
-                  <td>
-                    {order.currency}
-                    {order.price}
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => this.removeItemFromCart(order.bookName)}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p className="text-center my-5">No items in the cart !</p>
-        )}
-      </section>
+      </main>
     );
   }
 }

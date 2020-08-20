@@ -47,28 +47,30 @@ export default class TrackingPage extends Component {
     let { orders, isLoading } = this.state;
 
     return (
-      <div className="container tracking-orders">
-        <Loading isLoading={isLoading} />
-        <h1>Your ongoing orders</h1>
-        <small>Your items will be delivered within 14 days.</small>
-        <ul className="list-unstyled mt-5 p-2">
-          {orders &&
-            orders.map((order) => (
-              <li className="d-flex justify-content-between order-item">
-                <section>
-                  <h2>{order.bookName}</h2>
-                  <p>{order.status}</p>
-                </section>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => this.cancelOrder(order._id)}
-                >
-                  Cancel
-                </button>
-              </li>
-            ))}
-        </ul>
-      </div>
+      <main style={{ marginBottom: "25rem", marginTop: "10rem" }}>
+        <div className="container tracking-orders">
+          <Loading isLoading={isLoading} />
+          <h1>Your ongoing orders</h1>
+          <small>Your items will be delivered within 14 days.</small>
+          <ul className="list-unstyled mt-5 p-2">
+            {orders &&
+              orders.map((order) => (
+                <li className="d-flex justify-content-between order-item">
+                  <section>
+                    <h2>{order.bookName}</h2>
+                    <p>{order.status}</p>
+                  </section>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => this.cancelOrder(order._id)}
+                  >
+                    Cancel
+                  </button>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </main>
     );
   }
 }
