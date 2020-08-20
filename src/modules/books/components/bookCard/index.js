@@ -55,9 +55,11 @@ export default class BookCard extends Component {
         <Link to={`/books/${book._id}`}>
           <img src={book.cover} alt={`${book.name} cover`} />
         </Link>
-        <Link to={`/books/${book._id}`}>
-          <h3 className={book_card_heading}>{book.name}</h3>
-        </Link>
+        {/* <Link to={`/books/${book._id}`}>
+          <h3 className={book_card_heading}>
+            {book.name.split("").slice(0, 15).join(" ")}...
+          </h3>
+        </Link> */}
         <p>{book.author.name}</p>
         <div className="d-flex justify-content-between">
           <p className={book_rate}>

@@ -36,10 +36,10 @@ body {
   color: var(--text-primary) !important;
   background-color: var(--layout-primary) !important;
   --layout-primary: #fff;
-  --layout-secondary: #0a111a;
+  --layout-secondary: #37A9B7;
   --text-primary: #242627;
   --text-secondary: #0a111a;
-  --background-secondary: #0a111a;
+  --background-secondary: #37A9B7;
   --btn-hover: #024b88;
 }
 
