@@ -134,7 +134,7 @@ export default class Register extends Component {
     } = this.state;
     return (
       <div className={register_form_container}>
-        <h1 className={register_form_heading}>new customer</h1>
+        <h1 className={register_form_heading}>create account</h1>
         <form
           className={register_form}
           autoComplete="off"
@@ -201,9 +201,14 @@ export default class Register extends Component {
               value={location}
             />
           </div>
-          <button className={register_btn} type="submit" disabled={isLoading}>
-            {isLoading ? "Loading ..." : "Create"}
-          </button>
+          <div className="d-flex justify-content-between">
+            <button className={register_btn} type="submit" disabled={isLoading}>
+              {isLoading ? "Loading ..." : "Create"}
+            </button>
+            <small>
+              Already have an account? <a href="/login">login now</a>
+            </small>
+          </div>
           {!!success && (
             <p className="alert alert-success text-center">{success}</p>
           )}

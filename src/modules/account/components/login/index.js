@@ -108,9 +108,14 @@ export default class Login extends Component {
               id="password"
             />
           </div>
-          <button className={login_btn} type="submit" disabled={isLoading}>
-            {isLoading ? "Logging you in ..." : "Login"}
-          </button>
+          <div className="d-flex justify-content-between">
+            <button className={login_btn} type="submit" disabled={isLoading}>
+              {isLoading ? "Logging you in ..." : "Login"}
+            </button>
+            <small>
+              Doesn't have an account? <a href="/register">register now</a>
+            </small>
+          </div>
           {!!success && (
             <p className="alert alert-success text-center">{success}</p>
           )}
