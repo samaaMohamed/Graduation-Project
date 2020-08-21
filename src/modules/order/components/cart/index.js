@@ -4,7 +4,6 @@ import { CartProvider } from "globals/contexts/cart.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import OrderService from "modules/order/services/order.service";
-import Loading from "shared/loading";
 
 export default class CartPage extends Component {
   static contextType = CartProvider;
@@ -72,12 +71,11 @@ export default class CartPage extends Component {
   };
 
   render() {
-    let { orders, isLoading } = this.state;
+    let { orders } = this.state;
 
     return (
       <main style={{ marginBottom: "25rem", marginTop: "10rem" }}>
         <section className="cart-container container page">
-          <Loading isLoading={isLoading} />
           <section className="d-flex justify-content-between">
             <h1>Shopping Cart</h1>
             <section className="cart-actions d-flex flex-direction-column">
