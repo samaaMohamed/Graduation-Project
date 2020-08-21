@@ -20,6 +20,25 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Loading from "shared/loading";
 
 export default class BooksSection extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { width: 0 };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth });
+  }
+
   render() {
     const responsive = {
       desktop: {
@@ -36,6 +55,7 @@ export default class BooksSection extends Component {
       },
     };
     let { title, books, isLoading } = this.props;
+    let { width } = this.state;
     return (
       <div className={books_section}>
         <h2 className={books_section_title}>{title}</h2>
@@ -51,7 +71,8 @@ export default class BooksSection extends Component {
               keyBoardControl={true}
               customTransition="all .5"
               containerClass={carousel_container}
-              transitionDuration={500}
+              transitionDuration={1000}
+              autoPlay={width > 768 ? false : true}
             >
               {books && books.length > 0 ? (
                 books.map((book) => {

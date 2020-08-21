@@ -40,26 +40,37 @@ export default class Profile extends Component {
             </section>
 
             <section className={`${profile_orders} card`}>
-              <h2 className="mb-5 text-center">My orders</h2>
+              {user.orders.length > 0 && (
+                <h2 className="mb-5 text-center">My orders</h2>
+              )}
               <ul className="list-unstyled">
-                {user.orders.map((order) => {
-                  if (
-                    order.status === "delivered" ||
-                    order.status === "cancelled"
-                  ) {
-                    return (
-                      <li className={order_item} key={order._id}>
-                        <section className="d-flex justify-content-between">
-                          <h3>{order.bookName}</h3>
-                          <p className={text_red}>{order.status}</p>
-                        </section>
-                        <p>
-                          {order.currency} {order.price}
-                        </p>
-                      </li>
-                    );
-                  } else return "";
-                })}
+                {user.orders.length > 0 ? (
+                  user.orders.map((order) => {
+                    if (
+                      order.status === "delivered" ||
+                      order.status === "cancelled"
+                    ) {
+                      return (
+                        <li className={order_item} key={order._id}>
+                          <section className="d-flex justify-content-between">
+                            <h3>{order.bookName}</h3>
+                            <p className={text_red}>{order.status}</p>
+                          </section>
+                          <p>
+                            {order.currency} {order.price}
+                          </p>
+                        </li>
+                      );
+                    } else return "";
+                  })
+                ) : (
+                  <p
+                    className="text-center"
+                    style={{ color: "rgba(0, 0, 0, 0.6)" }}
+                  >
+                    Your cancelled and delivered orders will be shown here.
+                  </p>
+                )}
               </ul>
             </section>
           </>
