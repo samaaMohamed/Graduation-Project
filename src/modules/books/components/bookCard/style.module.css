@@ -32,6 +32,7 @@
 
 .book_old_price {
   text-decoration: line-through;
+  color: tomato
 }
 .book_card_rate_icon {
   margin: 0 0.2rem 0 1rem;

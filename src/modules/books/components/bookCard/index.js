@@ -63,10 +63,13 @@ export default class BookCard extends Component {
         <div className="d-flex justify-content-between">
           <p className={book_rate}>
             <span className="mr-1">{book.currency}</span>
+            <span className="mr-4">{book.price}</span>
             {book.old_price && (
-              <span className={`${book_old_price} mr-1`}>{book.old_price}</span>
+              <span className={`${book_old_price} mr-1`}>
+                {book.currency}
+                {book.old_price}
+              </span>
             )}
-            <span>{book.price}</span>
           </p>
           <p>
             <FontAwesomeIcon
