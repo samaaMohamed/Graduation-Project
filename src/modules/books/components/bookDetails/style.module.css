@@ -22,10 +22,9 @@
   color: #ff9529;
 }
 .add_btn {
-  padding: 0.5rem;
+  padding: 0.5rem 2rem;
   margin: 0 0 1rem 0;
   text-transform: capitalize;
-  width: 200px;
   background-color: var(--layout-secondary);
   color: white;
   border: 1px solid var(--layout-secondary);
