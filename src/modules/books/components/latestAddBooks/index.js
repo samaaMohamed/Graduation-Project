@@ -23,11 +23,11 @@ export default class LatestAddedBooks extends Component {
     let { books, isLoading } = this.state;
     return (
       <>
-        {isLoading ? (
-          <p>Loading ...</p>
-        ) : (
-          <BooksSection title="Latest Added Books" books={books} />
-        )}
+        <BooksSection
+          title="Latest Added Books"
+          books={books}
+          isLoading={isLoading}
+        />
       </>
     );
   }

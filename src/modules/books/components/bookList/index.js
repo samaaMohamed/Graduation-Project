@@ -138,7 +138,7 @@ export default class BookList extends Component {
     return (
       <div className={book_list}>
         <div className="container">
-          <Loading isLoading={isLoading} />
+          {isLoading && <Loading />}
           {isFailed && (
             <>
               <button className={back_btn} onClick={this.goBack}>

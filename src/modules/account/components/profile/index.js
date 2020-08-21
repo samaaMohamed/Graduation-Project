@@ -29,7 +29,7 @@ export default class Profile extends Component {
     let { user, isLoading } = this.state;
     return (
       <div className={`${profile} container`}>
-        <Loading isLoading={isLoading} />
+        {isLoading && <Loading />}
         {user ? (
           <>
             <section className={`${profile_intro} text-center`}>
@@ -40,7 +40,7 @@ export default class Profile extends Component {
             </section>
 
             <section className={`${profile_orders} card`}>
-              <h2 className="mb-5">My orders</h2>
+              <h2 className="mb-5 text-center">My orders</h2>
               <ul className="list-unstyled">
                 {user.orders.map((order) => {
                   if (
@@ -48,7 +48,7 @@ export default class Profile extends Component {
                     order.status === "cancelled"
                   ) {
                     return (
-                      <li className={order_item}>
+                      <li className={order_item} key={order._id}>
                         <section className="d-flex justify-content-between">
                           <h3>{order.bookName}</h3>
                           <p className={text_red}>{order.status}</p>
@@ -67,7 +67,7 @@ export default class Profile extends Component {
           !isLoading && (
             <p>
               An error occurred, please refresh or make sure to{" "}
-              <a href="/login?returnUrl=profile">login</a>
+              <a href="/login?returnUrl=/profile">login</a>
             </p>
           )
         )}

@@ -17,6 +17,7 @@ import {
 } from "./style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Loading from "shared/loading";
 
 export default class BooksSection extends Component {
   render() {
@@ -34,59 +35,62 @@ export default class BooksSection extends Component {
         items: 2,
       },
     };
-    let { title, books } = this.props;
+    let { title, books, isLoading } = this.props;
     return (
       <div className={books_section}>
         <h2 className={books_section_title}>{title}</h2>
-        <section className={book_list}>
-          <Carousel
-            swipeable={true}
-            showDots={false}
-            responsive={responsive}
-            infinite={true}
-            removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
-            keyBoardControl={true}
-            customTransition="all .5"
-            containerClass={carousel_container}
-            transitionDuration={500}
-          >
-            {books && books.length > 0 ? (
-              books.map((book) => {
-                return (
-                  <Link to={`/books/${book._id}`} key={book._id}>
-                    <section className={book_section_item}>
-                      <div className={book_section_overLay}>
-                        <p className={book_section_overLay_price}>
-                          {book.price} {book.currency}
-                        </p>
-                        <figcaption className={rate}>
-                          <p>
-                            <span>
-                              <FontAwesomeIcon
-                                className={book_section_overLay_icon}
-                                icon={faStar}
-                              ></FontAwesomeIcon>
-                            </span>
-                            <span>{book.rate}</span>
+        {isLoading && <Loading />}
+        {!isLoading && (
+          <section className={book_list}>
+            <Carousel
+              swipeable={true}
+              showDots={false}
+              responsive={responsive}
+              infinite={true}
+              removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
+              keyBoardControl={true}
+              customTransition="all .5"
+              containerClass={carousel_container}
+              transitionDuration={500}
+            >
+              {books && books.length > 0 ? (
+                books.map((book) => {
+                  return (
+                    <Link to={`/books/${book._id}`} key={book._id}>
+                      <section className={book_section_item}>
+                        <div className={book_section_overLay}>
+                          <p className={book_section_overLay_price}>
+                            {book.price} {book.currency}
                           </p>
-                        </figcaption>
-                      </div>
-                      <figure className={book_cover}>
-                        <img
-                          className={books_section_img}
-                          src={book.cover}
-                          alt=""
-                        />
-                      </figure>
-                    </section>
-                  </Link>
-                );
-              })
-            ) : (
-              <p> No Items !</p>
-            )}
-          </Carousel>
-        </section>
+                          <figcaption className={rate}>
+                            <p>
+                              <span>
+                                <FontAwesomeIcon
+                                  className={book_section_overLay_icon}
+                                  icon={faStar}
+                                ></FontAwesomeIcon>
+                              </span>
+                              <span>{book.rate}</span>
+                            </p>
+                          </figcaption>
+                        </div>
+                        <figure className={book_cover}>
+                          <img
+                            className={books_section_img}
+                            src={book.cover}
+                            alt=""
+                          />
+                        </figure>
+                      </section>
+                    </Link>
+                  );
+                })
+              ) : (
+                <p> No Items !</p>
+              )}
+            </Carousel>
+          </section>
+        )}
       </div>
     );
   }

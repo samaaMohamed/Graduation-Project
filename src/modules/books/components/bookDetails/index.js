@@ -165,7 +165,7 @@ export default class BookDetails extends Component {
     return (
       <div className={book_details}>
         <div className="container">
-          <Loading isLoading={isLoading} />
+          {isLoading && <Loading />}
           {!!errMsg && <p className="text-center">{errMsg}</p>}
           {book && (
             <>

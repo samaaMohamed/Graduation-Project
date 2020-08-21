@@ -49,7 +49,7 @@ export default class TrackingPage extends Component {
     return (
       <main style={{ marginBottom: "25rem", marginTop: "10rem" }}>
         <div className="container tracking-orders">
-          <Loading isLoading={isLoading} />
+          {isLoading && <Loading />}
           <h1>Your ongoing orders</h1>
           <small>Your items will be delivered within 14 days.</small>
           <ul className="list-unstyled mt-5 p-2">

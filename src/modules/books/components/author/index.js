@@ -30,7 +30,7 @@ export default class Author extends Component {
     return (
       <div className={book_list}>
         <div className="container">
-          <Loading isLoading={isLoading} />
+          {isLoading && <Loading />}
           {!!errMsg && <p className="text-center">{errMsg}</p>}
           {!isLoading && !errMsg && books.length > 0 && (
             <>
